@@ -1,0 +1,32 @@
+{
+  "Kendrick Lamar": {
+    "descricao": "Kendrick Lamar Duckworth é um rapper, cantor, compositor e produtor musical americano. Nascido e criado em Compton, Califórnia, Lamar lançou seu primeiro álbum de estúdio, Section.80, em 2011, e obteve reconhecimento crítico e sucesso comercial com seu álbum seguinte, Good Kid, M.A.A.D City (2012).",
+    "lancamento_primeiro_album": 2010,
+    "banda_ativa": true
+  },
+  "J. Cole": {
+    "descricao": "Jermaine Lamarr Cole, conhecido profissionalmente como J. Cole, é um rapper, cantor, compositor e produtor musical americano. Nasceu em 28 de janeiro de 1985 em Frankfurt, na Alemanha, e foi criado em Fayetteville, Carolina do Norte.",
+    "lancamento_primeiro_album": 2011,
+    "banda_ativa": true
+  },
+  "Kanye West": {
+    "descricao": "Kanye Omari West é um rapper, cantor, compositor, produtor musical, designer de moda, empresário e filantropo americano. West é uma das figuras mais aclamadas e mais vendidas da música popular contemporânea.",
+    "lancamento_primeiro_album": 2004,
+    "banda_ativa": true
+  },
+  "Travis Scott": {
+    "descricao": "Jacques Berman Webster II, conhecido profissionalmente como Travis Scott, é um rapper, cantor, compositor e produtor musical americano. Nascido e criado em Houston, Texas, Scott iniciou sua carreira musical em 2008.",
+    "lancamento_primeiro_album": 2015,
+    "banda_ativa": true
+  },
+  "Mac Miller": {
+    "descricao": "De ascendência judaica, estudou na Taylor Allderdice High School, de onde também saiu Wiz Khalifa. Antes da carreira solo, fez parte de um grupo de pop chamado The Ill Spoken, com outro cantor de Pittsburg chamado Beedie. Antes de assinar com a Rostrum, na sua adolescência, Mac Miller tinha como nome \"Easy Mac\".",
+    "lancamento_primeiro_album": 2010,
+    "banda_ativa": false
+  },
+  "Frank Ocean": {
+    "descricao": "Frank Ocean (nascido como Christopher Edwin Breaux; Long Beach, 28 de outubro de 1987), é um cantor, compositor, produtor e empresário. Em 2010, ele se tornou um membro do grupo de hip hop alternativo OFWGKTA, e sua mixtape de estréia, Nostalgia, Ultra, foi lançado no ano seguinte.",
+    "lancamento_primeiro_album": 2011,
+    "banda_ativa": true
+  }
+}

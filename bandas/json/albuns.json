@@ -1,0 +1,136 @@
+{
+  "Kendrick Lamar": [
+    {
+      "titulo": "Good Kid, M.A.A.D City",
+      "lancamento": "2012-10-22",
+      "musicas": [
+        {
+          "titulo": "Sherane a.k.a Master Splinter’s Daughter",
+          "duracao": "05:25",
+          "link_spotify": "https://open.spotify.com/track/3LCqIoWJxHg3vINe8lvtuV"
+        },
+        {
+          "titulo": "Bitch, Don’t Kill My Vibe",
+          "duracao": "05:10",
+          "link_spotify": "https://open.spotify.com/track/2UVbBKQOdFAekPTRsnkzcf"
+        }
+      ]
+    }
+  ],
+  "J. Cole": [
+    {
+      "titulo": "2014 Forest Hills Drive",
+      "lancamento": "2014-12-09",
+      "musicas": [
+        {
+          "titulo": "Intro",
+          "duracao": "02:09",
+          "link_spotify": "https://open.spotify.com/track/5N5k9nd479b1xpDZ4usjrg"
+        },
+        {
+          "titulo": "January 28th",
+          "duracao": "04:02",
+          "link_spotify": "https://open.spotify.com/track/1JJ5bI4tVcvA0RIWfUTWmM"
+        }
+      ]
+    }
+  ],
+  "Kanye West": [
+    {
+      "titulo": "My Beautiful Dark Twisted Fantasy",
+      "lancamento": "2010-11-22",
+      "musicas": [
+        {
+          "titulo": "Dark Fantasy",
+          "duracao": "04:40",
+          "link_spotify": "https://open.spotify.com/track/2FCgFJgD5qt8JDuaVlAiX5"
+        },
+        {
+          "titulo": "Gorgeous",
+          "duracao": "05:57",
+          "link_spotify": "https://open.spotify.com/track/1mU1S9EJnDBiHidb7Sch0f"
+        },
+        {
+          "titulo": "POWER",
+          "duracao": "04:52",
+          "link_spotify": "https://open.spotify.com/track/3DiDSECUqqY1AuBP8qtaIa"
+        }
+      ]
+    }
+  ],
+  "Travis Scott": [
+    {
+      "titulo": "Astroworld",
+      "lancamento": "2018-08-03",
+      "musicas": [
+        {
+          "titulo": "STARGAZING",
+          "duracao": "04:30",
+          "link_spotify": "https://open.spotify.com/track/1DkFFoG2Kfa8vRjqzH5KfD"
+        },
+        {
+          "titulo": "SICKO MODE",
+          "duracao": "05:12",
+          "link_spotify": "https://open.spotify.com/track/2xLMifQCjDGFmkHkpNLD9h"
+        }
+      ]
+    }
+  ],
+  "Mac Miller": [
+    {
+      "titulo": "Swimming",
+      "lancamento": "2018-08-03",
+      "musicas": [
+        {
+          "titulo": "Come Back to Earth",
+          "duracao": "02:41",
+          "link_spotify": "https://open.spotify.com/track/4nJToje1H4xTf9xZdYSXtQ"
+        },
+        {
+          "titulo": "Hurt Feelings",
+          "duracao": "04:05",
+          "link_spotify": "https://open.spotify.com/track/6kPJZM97LwdG9QIsT7khp6"
+        }
+      ]
+    }
+  ],
+  "Frank Ocean": [
+    {
+      "titulo": "Blonde",
+      "lancamento": "2016-08-20",
+      "musicas": [
+        {
+          "titulo": "Nikes",
+          "duracao": "05:14",
+          "link_spotify": "https://open.spotify.com/track/7GonnnalI2s19OCQO6fHGN"
+        },
+        {
+          "titulo": "Ivy",
+          "duracao": "04:09",
+          "link_spotify": "https://open.spotify.com/track/6m2iUawlKhoGdtIjNjG27p"
+        },
+        {
+          "titulo": "Pink + White",
+          "duracao": "03:04",
+          "link_spotify": "https://open.spotify.com/track/1nYeVF5vIBxMxfPoL0SIWg"
+        }
+      ]
+    },
+    {
+      "titulo": "Channel Orange",
+      "lancamento": "2012-07-10",
+      "musicas": [
+        {
+          "titulo": "Thinkin Bout You",
+          "duracao": "03:20",
+          "link_spotify": "https://open.spotify.com/track/4VqPOruhp5EdPBeR92t6lQ"
+        },
+        {
+          "titulo": "Pyramids",
+          "duracao": "09:52",
+          "link_spotify": "https://open.spotify.com/track/2Q8zdZz4P3Vgy0tjlBu00p"
+        }
+      ]
+    }
+  ]
+}
