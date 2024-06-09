@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'bandas',
     'artigos',
     'curso',
+    'noobsite',
+    'pwsite',
+    'novaapp',
+
 ]
 
 MIDDLEWARE = [

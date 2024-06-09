@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação Web</title>
+    <style>
+        body {
+            background: black;
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Interesses</h1>
+</header>
+
+<main>
+    <h2>Coisas que gostei de aprender:</h2>
+    <p>O funcionamento do modelo MVT.</p>
+    <h1>Os meus sites da ficha 6 de Programação Web:</h1>
+    <nav>
+        <a href="{% url 'pwsite:index' %}">Introdução</a>
+        <a href="{% url 'pwsite:sobre' %}">Sobre</a>
+        <a href="{% url 'pwsite:interesses' %}">Interesses</a>
+    </nav>
+
+    <h2>Coisas que gostaria de aprender:</h2>
+    <p>Formas mais complexas de estilizar os meus sites.</p>
+
+    <h2>Ideias de sites que possa vir a fazer:</h2>
+    <p>Um site para o meu TFC</p>
+    <p>Um site para o projeto play your idea</p>
+</main>
+
+<footer>
+    <p>&copy; {{ current_date }}, Sebastião Coelho - Alguns direitos reservados.</p>
+</footer>
+
+</body>
+</html>
