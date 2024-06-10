@@ -13,5 +13,3 @@ urlpatterns = [
     path('musicas/<int:musica_id>/', views.musica_view, name='musica'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
