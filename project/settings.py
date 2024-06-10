@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'noobsite',
     'pwsite',
     'novaapp',
+    'autenticacao',
 
 ]
 

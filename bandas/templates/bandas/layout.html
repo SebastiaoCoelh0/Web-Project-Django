@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>App Bandas</title>
+    <style>
+        body {
+            background: white;
+            color: #1DB954;
+        }
+
+        header {
+            background: #1DB954;
+            color: #191414;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Aplicação Bandas</h1>
+    <a href="{% url 'bandas:index' %}">
+        <button>Home</button>
+    </a>
+
+</header>
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<footer>
+    <p>Sebastião Coelho - 2024</p>
+</footer>
+</body>
+</html>

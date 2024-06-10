@@ -1,0 +1,15 @@
+{% extends 'artigos/layout.html' %}
+
+{% block content %}
+    <h2>{{ artigo.titulo }}</h2>
+    <p>por <a href="{% url 'artigos:autor' artigo.autor.id %}">{{ artigo.autor.nome }}</a></p>
+    <p>{{ artigo.data_publicacao }}</p>
+    <div>{{ artigo.conteudo }}</div>
+
+    <h3>Comentários</h3>
+    <ul>
+        {% for comentario in comentarios %}
+            <li>{{ comentario.utilizador.nome }}: {{ comentario.conteudo }} ({{ comentario.data_comentario }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

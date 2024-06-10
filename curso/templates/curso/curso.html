@@ -1,0 +1,27 @@
+{% extends 'curso/layout.html' %}
+
+{% block content %}
+    <h2>Lista de Cursos</h2>
+    <ul>
+        {% for curso in cursos %}
+            <li>
+                <h3>{{ curso.nome }}</h3>
+                <p>{{ curso.apresentacao }}</p>
+                <p>Objetivos: {{ curso.objetivos }}</p>
+                <p>Competências: {{ curso.competencias }}</p>
+                <p>ECTS: {{ curso.ects }}</p>
+                <p>Duração: {{ curso.duracao_semestres }} semestres</p>
+                <p>Departamento: {{ curso.departamento }}</p>
+                <p>Direção: {{ curso.contacto_direcao }} - {{ curso.email_direcao }}</p>
+                <p>Secretaria: {{ curso.contacto_secretaria }} - {{ curso.email_secretaria }}</p>
+                <ul>
+                    {% for disciplina in curso.disciplina_set.all %}
+                        <li>
+                            <a href="{% url 'curso:disciplina' disciplina.id %}">{{ disciplina.nome }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

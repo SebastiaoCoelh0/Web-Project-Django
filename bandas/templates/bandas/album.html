@@ -1,0 +1,18 @@
+{% extends "bandas/layout.html" %}
+
+{% block content %}
+    <h3>{{ album.nome }}</h3>
+    <img src='{{ album.capa.url }}' width="300px">
+    <p>Ano lançamento: {{ album.lancamento }}</p>
+    <p>Lista de músicas:</p>
+    <ul>
+        {% for musica in musicas %}
+            <li>
+                <p><b>: {{ musica.titulo }}</b>
+                <p>
+                    Duração: {{ musica.duracao }} Link do Spotify: <a
+                        href="{{ musica.link_spotify }}}">aqui</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
