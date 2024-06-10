@@ -1,0 +1,16 @@
+{% extends "bandas/layout.html" %}
+
+{% block content %}
+    <h3><a href="{% url 'bandas:banda' album.banda.id %}">{{ album.banda.nome }}</a> - {{ album.titulo }}</h3>
+    <img src='{{ album.capa.url }}' width="300px">
+    <p>Ano lançamento: {{ album.lancamento }}</p>
+    <p>Lista de músicas:</p>
+    <ul>
+        {% for musica in musicas %}
+            <li>
+                <p><b>  {{ musica.titulo }} - </b>
+                    <a href="{% url 'bandas:musica' musica.id %}">Info</a></p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

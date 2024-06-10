@@ -1,0 +1,16 @@
+{% extends 'curso/layout.html' %}
+
+{% block content %}
+    <h2>Lista de Projetos</h2>
+    <ul>
+        {% for projeto in projetos %}
+            <li>
+                <h3>{{ projeto.descricao }}</h3>
+                <p>Conceitos Aplicados: {{ projeto.conceitos_aplicados }}</p>
+                <p>Tecnologias Usadas: {{ projeto.tecnologias_usadas }}</p>
+                <a href="{{ projeto.video_link }}">Video do Projeto</a> |
+                <a href="{{ projeto.github_link }}">GitHub do Projeto</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

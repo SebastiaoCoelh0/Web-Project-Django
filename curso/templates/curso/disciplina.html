@@ -1,0 +1,18 @@
+{% extends 'curso/layout.html' %}
+
+{% block content %}
+    <h2>{{ disciplina.nome }}</h2>
+    <p>Ano: {{ disciplina.ano }}</p>
+    <p>Semestre: {{ disciplina.semestre }}</p>
+    <p>ECTS: {{ disciplina.ects }}</p>
+    <p>Código: {{ disciplina.codigo_leitura }}</p>
+
+    <h3>Projetos</h3>
+    <ul>
+        {% for projeto in projetos %}
+            <li>
+                <a href="{% url 'curso:projeto' projeto.id %}">{{ projeto.descricao }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

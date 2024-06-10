@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'noobsite',
     'pwsite',
     'novaapp',
+    'autenticacao',
 
 ]
 
@@ -129,3 +130,10 @@ MEDIA_ROOT = '/home/a22202310/project/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/a22202310/project/static'
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'seu.email@gmail.com'
+EMAIL_HOST_PASSWORD = 'eonzidycfgbszpkk'

@@ -1,0 +1,20 @@
+{% extends 'bandas/layout.html' %}
+
+{% block content %}
+    <h3>{{ banda }}</h3>
+    <img src='{{ banda.foto.url }}' width="300px">
+
+    <p><b> Descrição: </b>{{ banda.descricao }}</p>
+    <p><b> Primeiro lançamento: </b>{{ banda.lancamento_primeiro_album }}</p>
+
+    <p><b> Lista de albuns ({{ albuns|length }}): </b></p>
+    <ul>
+        {% for album in albuns %}
+            <li>
+                <a href="{% url 'bandas:album' album.id %}">{{ album.titulo }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}
