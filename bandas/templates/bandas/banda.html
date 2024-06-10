@@ -7,12 +7,11 @@
     <p><b> Descrição: </b>{{ banda.descricao }}</p>
     <p><b> Primeiro lançamento: </b>{{ banda.lancamento_primeiro_album }}</p>
 
-    <p>Existem na biblioteca {{ banda.albuns.all|length }} livros de {{ banda }}:</p>
+    <p><b> Lista de albuns ({{ albuns|length }}): </b></p>
     <ul>
-
         {% for album in albuns %}
             <li>
-                <a href="{% url 'bandas:album' album.id %}">{{ album.titulo }}, {{ album.lancamento }}</a>
+                <a href="{% url 'bandas:album' album.id %}">{{ album.titulo }}</a>
             </li>
         {% endfor %}
     </ul>

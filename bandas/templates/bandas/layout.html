@@ -3,22 +3,24 @@
     <title>App Bandas</title>
     <style>
         body {
-            background: white;
-            color: #1DB954;
+            font-family: "Courier New", serif;
+            background: #121212;
+            color: white;
         }
 
         header {
             background: #1DB954;
             color: #191414;
         }
+
+        a {
+            color: white;
+        }
     </style>
 </head>
 <body>
 <header>
-    <h1>Aplicação Bandas</h1>
-    <a href="{% url 'bandas:index' %}">
-        <button>Home</button>
-    </a>
+    <a href="{% url 'bandas:index' %}"><h1>Aplicação Bandas</h1></a>
 
 </header>
 

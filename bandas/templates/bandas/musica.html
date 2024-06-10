@@ -1,0 +1,10 @@
+{% extends "bandas/layout.html" %}
+
+{% block content %}
+    <h3><a href="{% url 'bandas:banda' musica.album.banda.id %}">{{ musica.album.banda.nome }}</a> - <a
+            href="{% url 'bandas:album' musica.album.id %}">{{ album.titulo }}</a> - {{ musica.titulo }}</h3>
+    <p><b>Ano lançamento do album: </b>{{ album.lancamento }}</p>
+    <p><b>Duração: </b> {{ musica.duracao }} </p>
+    <p><b>Link do Spotify: </b><a href="{{ musica.link_spotify }}}" target="_blank">aqui</a></p>
+
+{% endblock %}

@@ -27,3 +27,12 @@ def albuns_view(request, album_id):
         'musicas': album.musica_set.all()
     }
     return render(request, "bandas/album.html", context)
+
+
+def musica_view(request, musica_id):
+    musica = Musica.objects.get(id=musica_id)
+    context = {
+        'album': musica.album,
+        'musica': musica
+    }
+    return render(request, "bandas/musica.html", context)
