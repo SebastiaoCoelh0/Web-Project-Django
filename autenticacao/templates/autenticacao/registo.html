@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'autenticacao/layout.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h3>Registo</h3>
+
+    {% if mensagem %}
+        <p>mensagem: {{ mensagem }}</p>
+    {% endif %}
+
+    <!-- formulário que pede as credenciais
+    e as reenvia para a view 'login'. -->
+
+    <form action="{% url 'registo' %}" method="post">
+        {% csrf_token %}
+        <p><input type="text" name="username" placeholder="O seu username"></p>
+        <p><input type="text" name="nome" placeholder="O seu nome"></p>
+        <p><input type="text" name="apelido" placeholder="O seu apelido"></p>
+        <p><input type="email" name="email" placeholder="O seu email"></p>
+        <p><input type="password" name="password" placeholder="Defina a sua Palavra-chave">
+            <input type="submit" value="Criar conta"></p>
+    </form>
+    <p>Já tem conta?</p>
+    <a href="{% url 'login' %}">
+        <button>Log in</button>
+    </a>
+
+    {#    <a href="{% url 'reset_password' %}">#}
+    {#        <button>Recuperar Palavra-chave</button>#}
+    {#    </a>#}
+
+{% endblock %}

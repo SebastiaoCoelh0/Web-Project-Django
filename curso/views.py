@@ -36,3 +36,7 @@ def projetos_view(request):
         'projetos': projetos
     }
     return render(request, 'curso/projetos.html', context)
+
+
+def in_editors_curso(user):
+    return user.groups.filter(name='editors_curso').exists()

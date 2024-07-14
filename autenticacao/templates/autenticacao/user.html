@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <style>
+        body {
+            background: #1e1f22;
+            color: #b5b5b5;
+        }
+
+        header {
+            color: #1DB954;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div>
+        <h3>Bem-Vindo, {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+        <a href="{% url 'logout' %}">
+            <button>Log out</button>
+        </a>
+        <a href="{% url 'bandas:index' %}">
+            <button>App Bandas</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

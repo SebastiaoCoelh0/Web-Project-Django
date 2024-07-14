@@ -3,7 +3,9 @@
 {% block content %}
     <h3>{{ banda }}</h3>
     <img src='{{ banda.foto.url }}' width="300px">
-
+    <a href="{% url 'bandas:apaga_banda' banda.id %}">
+        <button>Apagar banda e os seus albuns</button>
+    </a>
     <p><b> Descrição: </b>{{ banda.descricao }}</p>
     <p><b> Primeiro lançamento: </b>{{ banda.lancamento_primeiro_album }}</p>
 
@@ -15,6 +17,9 @@
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'bandas:nova_banda' %}">
+        <button>Inserir nova Banda</button>
+    </a>
 
 
 {% endblock %}

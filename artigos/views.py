@@ -30,3 +30,7 @@ def autor_view(request, autor_id):
         'artigos': artigos
     }
     return render(request, 'artigos/autor.html', context)
+
+
+def in_editors_artigos(user):
+    return user.groups.filter(name='editors_artigos').exists()

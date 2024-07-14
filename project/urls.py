@@ -26,8 +26,10 @@ urlpatterns = [
     path('bandas/', include('bandas.urls')),
     path('artigos/', include('artigos.urls')),
     path('curso/', include('curso.urls')),
+    path('autenticacao/', include('autenticacao.urls')),
+
 ]
 
 urlpatterns += static(
-      settings.MEDIA_URL,
-      document_root=settings.MEDIA_ROOT)
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT)
