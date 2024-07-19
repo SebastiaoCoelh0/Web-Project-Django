@@ -136,5 +136,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sebastiao.f.m.coelho@gmail.com'
 EMAIL_HOST_PASSWORD = 'plinlncinarytpqh'
-
-# LOGIN_URL = 'autenticacao:login'
+LOGIN_URL = 'autenticacao:login'

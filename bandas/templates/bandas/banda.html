@@ -2,10 +2,11 @@
 
 {% block content %}
     <h3>{{ banda }}</h3>
-    <img src='{{ banda.foto.url }}' width="300px">
-    <a href="{% url 'bandas:apaga_banda' banda.id %}">
-        <button>Apagar banda e os seus albuns</button>
-    </a>
+    {% if banda.foto %}
+        <img src='{{ banda.foto.url }}' width="300px">
+    {% else %}
+        <img src='no_image.jpg' width="300px">
+    {% endif %}
     <p><b> Descrição: </b>{{ banda.descricao }}</p>
     <p><b> Primeiro lançamento: </b>{{ banda.lancamento_primeiro_album }}</p>
 
@@ -17,9 +18,17 @@
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'bandas:nova_banda' %}">
-        <button>Inserir nova Banda</button>
-    </a>
+    {% if request.user.is_authenticated %}
+        <p><b>Opções do editor:</b></p>
+        <ul>
+            <li><a href="{% url 'bandas:novo_album' banda.id %}">
+                <button>Criar novo album</button>
+            </a></li>
+            <li><a href="{% url 'bandas:apaga_banda' banda.id %}">
+                <button>Apagar banda e os seus albuns</button>
+            </a></li>
+        </ul>
 
 
+    {% endif %}
 {% endblock %}
