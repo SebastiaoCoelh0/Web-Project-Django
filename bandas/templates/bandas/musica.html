@@ -7,4 +7,19 @@
     <p><b>Duração: </b> {{ musica.duracao }} </p>
     <p><b>Link do Spotify: </b><a href="{{ musica.link_spotify }}}" target="_blank">aqui</a></p>
 
+    {% if request.user.is_authenticated %}
+        <p><b>Opções do editor:</b></p>
+        <ul>
+            <li><a href="{% url 'bandas:edita_musica' musica.id %}">
+                <button>Editar musica</button>
+            </a></li>
+            <li>
+                <form action="{% url 'bandas:apaga_musica' musica.id %}" method="post"
+                      onsubmit="return confirm('Tem certeza que deseja apagar a musica?');">
+                    {% csrf_token %}
+                    <button type="submit">Apagar musica</button>
+                </form>
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 
-from .forms import BandaForm, AlbumForm
+from .forms import BandaForm, AlbumForm, MusicaForm
 from .models import *
 
 
@@ -65,7 +65,7 @@ def edita_banda_view(request, banda_id):
         form = BandaForm(request.POST or None, request.FILES, instance=banda)
         if form.is_valid():
             form.save()
-            return redirect('banda', banda_id=banda.id)
+            return redirect('bandas:banda', banda_id=banda.id)
     else:
         form = BandaForm(instance=banda)
 
@@ -87,8 +87,10 @@ def novo_album_view(request, banda_id):
     banda = Banda.objects.get(id=banda_id)
     form = AlbumForm(request.POST or None, request.FILES)
     if form.is_valid():
-        form.save()
-        return redirect('banda', banda_id=banda.id)
+        album = form.save(commit=False)
+        album.banda = banda
+        album.save()
+        return redirect('bandas:banda', banda_id=banda.id)
 
     context = {'form': form, 'banda': banda}
     return render(request, 'bandas/novo_album.html', context)
@@ -103,9 +105,9 @@ def edita_album_view(request, album_id):
         form = AlbumForm(request.POST or None, request.FILES, instance=album)
         if form.is_valid():
             form.save()
-            return redirect('banda', banda_id=album.id)
+            return redirect('bandas:album', album_id=album.id)
     else:
-        form = BandaForm(instance=album)
+        form = AlbumForm(instance=album)
 
     context = {'form': form, 'album': album}
     return render(request, 'bandas/edita_album.html', context)
@@ -115,5 +117,47 @@ def edita_album_view(request, album_id):
 @user_passes_test(in_editors_bandas)
 def apaga_album_view(request, album_id):
     album = Album.objects.get(id=album_id)
+    banda = album.banda
     album.delete()
-    return redirect('bandas')
+    return redirect('bandas:banda', banda_id=banda.id)
+
+
+@login_required
+@user_passes_test(in_editors_bandas)
+def nova_musica_view(request, album_id):
+    album = Album.objects.get(id=album_id)
+    form = MusicaForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        musica = form.save(commit=False)
+        musica.album = album
+        musica.save()
+        return redirect('bandas:album', album_id=album.id)
+
+    context = {'form': form, 'album': album}
+    return render(request, 'bandas/nova_musica.html', context)
+
+
+@login_required
+@user_passes_test(in_editors_bandas)
+def edita_musica_view(request, musica_id):
+    musica = Musica.objects.get(id=musica_id)
+
+    if request.POST:
+        form = MusicaForm(request.POST or None, request.FILES, instance=musica)
+        if form.is_valid():
+            form.save()
+            return redirect('bandas:musica', album_id=musica.id)
+    else:
+        form = MusicaForm(instance=musica)
+
+    context = {'form': form, 'musica': musica}
+    return render(request, 'bandas/edita_musica.html', context)
+
+
+@login_required
+@user_passes_test(in_editors_bandas)
+def apaga_musica_view(request, musica_id):
+    musica = Musica.objects.get(id=musica_id)
+    album = musica.album
+    musica.delete()
+    return redirect('bandas:album', album_id=album.id)

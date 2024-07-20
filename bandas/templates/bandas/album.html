@@ -2,7 +2,9 @@
 
 {% block content %}
     <h3><a href="{% url 'bandas:banda' album.banda.id %}">{{ album.banda.nome }}</a> - {{ album.titulo }}</h3>
-    <img src='{{ album.capa.url }}' width="300px">
+    {% if album.capa %}
+        <img src='{{ album.capa.url }}' width="300px" alt="sem capa">
+    {% endif %}
     <p>Ano lançamento: {{ album.lancamento }}</p>
     <p>Lista de músicas:</p>
     <ul>
@@ -13,5 +15,23 @@
             </li>
         {% endfor %}
     </ul>
-    
+    {% if request.user.is_authenticated %}
+        <p><b>Opções do editor:</b></p>
+        <ul>
+            <li><a href="{% url 'bandas:nova_musica' album.id %}">
+                <button>Criar nova musica</button>
+            </a></li>
+            <li><a href="{% url 'bandas:edita_album' album.id %}">
+                <button>Editar album</button>
+            </a></li>
+            <li>
+                <form action="{% url 'bandas:apaga_album' album.id %}" method="post"
+                      onsubmit="return confirm('Tem certeza que deseja apagar o album e as suas músicas?');">
+                    {% csrf_token %}
+                    <button type="submit">Apagar album e as suas músicas</button>
+                </form>
+            </li>
+        </ul>
+    {% endif %}
+
 {% endblock %}

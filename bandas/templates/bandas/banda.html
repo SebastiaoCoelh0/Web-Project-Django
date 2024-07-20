@@ -3,9 +3,7 @@
 {% block content %}
     <h3>{{ banda }}</h3>
     {% if banda.foto %}
-        <img src='{{ banda.foto.url }}' width="300px">
-    {% else %}
-        <img src='no_image.jpg' width="300px">
+        <img src='{{ banda.foto.url }}' width="300px" alt="{{ banda.nome }}">
     {% endif %}
     <p><b> Descrição: </b>{{ banda.descricao }}</p>
     <p><b> Primeiro lançamento: </b>{{ banda.lancamento_primeiro_album }}</p>
@@ -24,11 +22,16 @@
             <li><a href="{% url 'bandas:novo_album' banda.id %}">
                 <button>Criar novo album</button>
             </a></li>
-            <li><a href="{% url 'bandas:apaga_banda' banda.id %}">
-                <button>Apagar banda e os seus albuns</button>
+            <li><a href="{% url 'bandas:edita_banda' banda.id %}">
+                <button>Editar banda</button>
             </a></li>
+            <li>
+                <form action="{% url 'bandas:apaga_banda' banda.id %}" method="post"
+                      onsubmit="return confirm('Tem certeza que deseja apagar a banda e os seus albuns?');">
+                    {% csrf_token %}
+                    <button type="submit">Apagar banda e os seus albuns</button>
+                </form>
+            </li>
         </ul>
-
-
     {% endif %}
 {% endblock %}

@@ -1,15 +1,13 @@
 {% extends "bandas/layout.html" %}
 
 {% block content %}
-    <h3>Novo album</h3>
+    <h3>Novo album da banda - <b><a href="{% url 'bandas:banda' banda.id %}">{{ banda.nome }}</a></b></h3>
 
     <form action="" method="post" enctype='multipart/form-data'>
-
         {% csrf_token %}   <!-- obrigatório nos forms Django -->
         <table>
             {{ form }}   <!-- insere input para cada atributo da classe Autor, numa tabela -->
         </table>
         <input type="submit" value="Criar album">
-
     </form>
 {% endblock %}

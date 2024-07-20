@@ -1,0 +1,13 @@
+{% extends "bandas/layout.html" %}
+
+{% block content %}
+    <h3>Nova música do álbum - <b><a href="{% url 'bandas:album' album.id %}">{{ album.titulo }}</a></b></h3>
+
+    <form action="" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <input type="submit" value="Criar música">
+    </form>
+{% endblock %}
