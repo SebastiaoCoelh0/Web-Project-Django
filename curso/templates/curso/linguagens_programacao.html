@@ -2,19 +2,25 @@
 
 {% block content %}
     {% if request.user.is_authenticated %}
-        <a href="{% url 'curso:novo_projeto' %}">
-            <button>Novo Projeto</button>
+        <a href="{% url 'curso:nova_linguagem_programacao' %}">
+            <button>Nova Linguagem de Programação</button>
         </a>
     {% endif %}
-    <h2>Lista de Projetos</h2>
+    <h2>Lista de Linguagens de Programação</h2>
     <ul>
-        {% for projeto in projetos %}
+        {% for linguagem in linguagens_programacao %}
             <li>
-                <h3>{{ projeto.descricao }}</h3>
-                <p>Conceitos Aplicados: {{ projeto.conceitos_aplicados }}</p>
-                <p>Tecnologias Usadas: {{ projeto.tecnologias_usadas }}</p>
-                <a href="{{ projeto.video_link }}">Video do Projeto</a> |
-                <a href="{{ projeto.github_link }}">GitHub do Projeto</a>
+                <h3>{{ linguagem.nome }}</h3>
+                <ul>
+
+                    {% for projeto in linguagem.projetos %}
+                        <li>
+                            <a href="{% url 'curso:projeto'  projeto.id %}">
+                                {{ projeto.descricao }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </li>
             {% if request.user.is_authenticated %}
                 <a href="{% url 'curso:edita_projeto'  projeto.id %}">

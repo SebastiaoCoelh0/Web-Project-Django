@@ -22,11 +22,14 @@
         <h3>Bem-Vindo, {{ request.user.first_name }} {{ request.user.last_name }}</h3>
         <p><strong>Username:</strong> {{ request.user.username }}</p>
         <p><strong>Email:</strong> {{ request.user.email }}</p>
-        <a href="{% url 'logout' %}">
+        <a href="{% url 'autenticacao:logout' %}">
             <button>Log out</button>
         </a>
         <a href="{% url 'bandas:index' %}">
             <button>App Bandas</button>
+        </a>
+        <a href="{% url 'curso:curso' %}">
+            <button>App Curso</button>
         </a>
     </div>
 </div>

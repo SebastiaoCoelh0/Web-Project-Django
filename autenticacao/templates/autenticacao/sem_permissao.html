@@ -1,0 +1,11 @@
+{% extends 'autenticacao/layout.html' %}
+
+{% block content %}
+    <h3>Acesso Negado!</h3>
+    <p>Você não tem permissão para realizar esta ação.</p>
+    <p>Inicie sessão com outra conta ou contacte o admin.</p>
+    <a href="{% url 'autenticacao:logout' %}">
+        <button>Log out</button>
+    </a>
+
+{% endblock %}

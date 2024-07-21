@@ -1,5 +1,5 @@
 # Create your views here.
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import BandaForm, AlbumForm, MusicaForm
@@ -45,8 +45,9 @@ def in_editors_bandas(user):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def nova_banda_view(request):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     form = BandaForm(request.POST or None, request.FILES)
     if form.is_valid():
         form.save()
@@ -57,8 +58,9 @@ def nova_banda_view(request):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def edita_banda_view(request, banda_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     banda = Banda.objects.get(id=banda_id)
 
     if request.POST:
@@ -74,16 +76,18 @@ def edita_banda_view(request, banda_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def apaga_banda_view(request, banda_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     banda = Banda.objects.get(id=banda_id)
     banda.delete()
     return redirect('bandas:index')
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def novo_album_view(request, banda_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     banda = Banda.objects.get(id=banda_id)
     form = AlbumForm(request.POST or None, request.FILES)
     if form.is_valid():
@@ -97,8 +101,9 @@ def novo_album_view(request, banda_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def edita_album_view(request, album_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     album = Album.objects.get(id=album_id)
 
     if request.POST:
@@ -114,8 +119,9 @@ def edita_album_view(request, album_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def apaga_album_view(request, album_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     album = Album.objects.get(id=album_id)
     banda = album.banda
     album.delete()
@@ -123,8 +129,9 @@ def apaga_album_view(request, album_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def nova_musica_view(request, album_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     album = Album.objects.get(id=album_id)
     form = MusicaForm(request.POST or None, request.FILES)
     if form.is_valid():
@@ -138,8 +145,9 @@ def nova_musica_view(request, album_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def edita_musica_view(request, musica_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     musica = Musica.objects.get(id=musica_id)
 
     if request.POST:
@@ -155,8 +163,9 @@ def edita_musica_view(request, musica_id):
 
 
 @login_required
-@user_passes_test(in_editors_bandas)
 def apaga_musica_view(request, musica_id):
+    if not in_editors_bandas(request.user):
+        return redirect('autenticacao:sem_permissao')
     musica = Musica.objects.get(id=musica_id)
     album = musica.album
     musica.delete()

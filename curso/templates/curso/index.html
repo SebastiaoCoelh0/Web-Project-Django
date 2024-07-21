@@ -1,0 +1,61 @@
+{% extends 'curso/layout.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'curso:novo_curso' %}">
+            <button>Inserir novo Curso</button>
+        </a>
+        <a href="{% url 'curso:nova_disciplina' %}">
+            <button>Inserir nova Disciplina</button>
+        </a>
+    {% endif %}
+    <h2>Lista de Cursos</h2>
+    <ul>
+        {% for curso_data in cursos_disciplinas %}
+            {% with curso=curso_data.curso %}
+                <li>
+                    <h3>{{ curso.nome }}</h3>
+                    <p>{{ curso.apresentacao }}</p>
+                    <p>Objetivos: {{ curso.objetivos }}</p>
+                    <p>Competências: {{ curso.competencias }}</p>
+                    <p>ECTS: {{ curso.ects }}</p>
+                    <p>Duração: {{ curso.duracao_semestres }} semestres</p>
+                    <p>Departamento: {{ curso.departamento }}</p>
+                    <p>Direção: {{ curso.contacto_direcao }} - {{ curso.email_direcao }}</p>
+                    <p>Secretaria: {{ curso.contacto_secretaria }} - {{ curso.email_secretaria }}</p>
+                    {% for ano, semestres in curso_data.disciplinas_por_ano.items %}
+                        <h4>{{ ano }} Ano</h4>
+                        <ul>
+                            {% for semestre, disciplinas in semestres.items %}
+                                {% if disciplinas %}
+                                    <li>
+                                        {% if semestre %}
+                                            <h5>{{ semestre }}</h5>
+                                            <ul>
+                                                {% for disciplina in disciplinas %}
+                                                    <li>
+                                                        <a href="{% url 'curso:disciplina' disciplina.id %}">{{ disciplina.nome }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </li>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'curso:edita_curso'  curso.id %}">
+                        <button>Editar Curso</button>
+                    </a>
+                    <form action="{% url 'curso:apaga_curso' curso.id %}" method="post"
+                          onsubmit="return confirm('Tem certeza que deseja apagar o curso?');">
+                        {% csrf_token %}
+                        <button type="submit">Apagar Curso</button>
+                    </form>
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock %}

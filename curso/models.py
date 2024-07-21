@@ -15,6 +15,7 @@ class Curso(models.Model):
     email_direcao = models.EmailField()
     contacto_secretaria = models.CharField(max_length=255)
     email_secretaria = models.EmailField()
+    disciplinas = models.ManyToManyField('Disciplina', related_name='cursos')
 
     def __str__(self):
         return self.nome
@@ -54,7 +55,7 @@ class LinguagemProgramacao(models.Model):
 
 class Docente(models.Model):
     nome = models.CharField(max_length=255)
-    disciplinas = models.ManyToManyField(Disciplina)
+    disciplinas = models.ManyToManyField(Disciplina, related_name='docentes')
 
     def __str__(self):
         return self.nome

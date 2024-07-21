@@ -12,7 +12,7 @@ def registo_view(request):
             last_name=request.POST['apelido'],
             password=request.POST['password']
         )
-        return redirect('login')
+        return redirect('autenticacao:login')
 
     return render(request, 'autenticacao/registo.html')
 
@@ -41,4 +41,8 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('autenticacao:login')
+
+
+def sem_permissao_view(request):
+    return render(request, 'autenticacao/sem_permissao.html')

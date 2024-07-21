@@ -10,7 +10,7 @@
     <!-- formulário que pede as credenciais
     e as reenvia para a view 'login'. -->
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'autenticacao:login' %}" method="post">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username..">
         <input type="password" name="password" placeholder="Palavra-chave..">
@@ -18,7 +18,7 @@
     </form>
 
     <p>Ainda não tem conta?</p>
-    <a href="{% url 'registo' %}">
+    <a href="{% url 'autenticacao:registo' %}">
         <button>Registar</button>
     </a>
 

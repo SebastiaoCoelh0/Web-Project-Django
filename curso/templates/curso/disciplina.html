@@ -7,12 +7,36 @@
     <p>ECTS: {{ disciplina.ects }}</p>
     <p>Código: {{ disciplina.codigo_leitura }}</p>
 
-    <h3>Projetos</h3>
-    <ul>
-        {% for projeto in projetos %}
-            <li>
-                <a href="{% url 'curso:projeto' projeto.id %}">{{ projeto.descricao }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% if disciplina.docentes.exists %}
+        <h3>Docentes:</h3>
+        <ul>
+            {% for docente in disciplina.docentes.all %}
+                <li>
+                    <a href="{% url 'curso:docente' docente.id %}">{{ docente.nome }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {% if disciplina.projeto %}
+        <h3>Projetos</h3>
+        <ul>
+            {% for projeto in disciplina.projeto %}
+                <li>
+                    <a href="{% url 'curso:projeto' projeto.id %}">{{ projeto.descricao }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'curso:edita_disciplina'  disciplina.id %}">
+            <button>Editar Disciplina</button>
+        </a>
+        <form action="{% url 'curso:apaga_disciplina' disciplina.id %}" method="post"
+              onsubmit="return confirm('Tem certeza que deseja apagar a disciplina?');">
+            {% csrf_token %}
+            <button type="submit">Apagar Disciplina</button>
+        </form>
+    {% endif %}
 {% endblock %}
