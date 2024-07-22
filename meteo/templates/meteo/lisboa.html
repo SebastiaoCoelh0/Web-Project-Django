@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'bandas/layout.html' %}
+
+{% block content %}
+    <h1>Previsão para Lisboa</h1>
+    <p>Cidade: {{ cidade }}</p>
+    <p>Data: {{ data }}</p>
+    <p>Temperatura Mínima: {{ temp_min }}°C</p>
+    <p>Temperatura Máxima: {{ temp_max }}°C</p>
+    <p>Descrição: {{ descricao }}</p>
+    <img src="{{ icon }}" alt="Icone do Tempo">
+{% endblock %}

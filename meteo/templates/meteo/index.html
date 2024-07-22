@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'bandas/layout.html' %}
+
+{% block content %}
+    <h1>Previsão Meteorológica</h1>
+    <p><a href="{% url 'meteo:lisboa' %}">Previsão para Lisboa</a></p>
+    <p><a href="{% url 'meteo:previsao' %}">Previsão para Outra Cidade Portuguesa</a></p>
+    <p><a href="{% url 'meteo:api_cidades' %}">Previsão JSON</a></p>
+    <p><a href="{% url 'meteo:api_previsao_hoje',  %}">Previsão JSON</a></p>
+    <p><a href="{% url 'meteo:api_previsao_proximos_dias',  %}">Previsão JSON</a></p>
+{% endblock %}
