@@ -10,6 +10,21 @@ class CursoForm(forms.ModelForm):
 
 
 class DisciplinaForm(forms.ModelForm):
+    cursos = forms.ModelMultipleChoiceField(
+        queryset=Curso.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    docentes = forms.ModelMultipleChoiceField(
+        queryset=Docente.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    projeto = forms.ModelChoiceField(
+        queryset=Projeto.objects.all(),
+        required=False
+    )
+
     class Meta:
         model = Disciplina
         fields = '__all__'

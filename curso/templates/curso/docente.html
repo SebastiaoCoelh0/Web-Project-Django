@@ -10,4 +10,14 @@
                 {{ disciplina.nome }}</a></li>
         {% endfor %}
     </ul>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'curso:edita_docente'  docente.id %}">
+            <button>Editar Docente</button>
+        </a>
+        <form action="{% url 'curso:apaga_docente' docente.id %}" method="post"
+              onsubmit="return confirm('Tem certeza que deseja apagar o docente?');">
+            {% csrf_token %}
+            <button type="submit">Apagar Docente</button>
+        </form>
+    {% endif %}
 {% endblock %}

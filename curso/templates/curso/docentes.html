@@ -1,0 +1,17 @@
+{% extends 'curso/layout.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'curso:novo_docente' %}">
+            <button>Novo Docente</button>
+        </a>
+    {% endif %}
+    <h2>Lista de Docentes</h2>
+    <ul>
+        {% for docente in docentes %}
+            <li>
+                <a href="{% url 'curso:docente_detalhe' docente.id %}">{{ docente.nome }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

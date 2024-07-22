@@ -1,0 +1,12 @@
+{% extends 'curso/layout.html' %}
+
+{% block title %}Nova Linguagem de Programação{% endblock %}
+
+{% block content %}
+    <h2>Nova Linguagem de Programação</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}

@@ -23,8 +23,10 @@ class Curso(models.Model):
 
 class Disciplina(models.Model):
     nome = models.CharField(max_length=255)
-    ano = models.IntegerField()
-    semestre = models.CharField(max_length=20)
+    ano = models.IntegerField(choices=[(1, '1º Ano'), (2, '2º Ano'), (3, '3º Ano')])
+    semestre = models.CharField(max_length=20,
+                                choices=[('1º Semestre', '1º Semestre'), ('2º Semestre', '2º Semestre'),
+                                         ('Anual', 'Anual'), ])
     ects = models.FloatField()
     codigo_leitura = models.CharField(max_length=50)
 

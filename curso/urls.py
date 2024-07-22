@@ -14,12 +14,11 @@ urlpatterns = [
     path('disciplina/<int:disciplina_id>/editar', views.edita_disciplina_view, name='edita_disciplina'),
     path('disciplina/<int:disciplina_id>/apagar', views.apaga_disciplina_view, name='apaga_disciplina'),
 
+    path('projetos/', views.projetos_view, name='projetos'),
     path('projeto/<int:projeto_id>/', views.projeto_view, name='projeto'),
     path('projeto/novo', views.novo_projeto_view, name='novo_projeto'),
     path('projeto/<int:projeto_id>/editar', views.edita_projeto_view, name='edita_projeto'),
     path('projeto/<int:projeto_id>/apagar', views.apaga_projeto_view, name='apaga_projeto'),
-
-    path('projetos/', views.projetos_view, name='projetos'),
 
     path('linguagens_programacao/', views.linguagens_programacao_view, name='linguagens_programacao'),
     path('linguagem_programacao/nova', views.nova_linguagem_programacao_view, name='nova_linguagem_programacao'),
@@ -28,7 +27,8 @@ urlpatterns = [
     path('linguagem_programacao/<int:linguagem_programacao_id>/apagar', views.apaga_linguagem_programacao_view,
          name='apaga_linguagem_programacao'),
 
-    path('docente/', views.docente_view, name='docente'),
+    path('docentes/', views.docentes_view, name='docentes'),
+    path('docente/<int:docente_id>', views.docente_view, name='docente'),
     path('docente/novo', views.novo_docente_view, name='novo_docente'),
     path('docente/<int:docente_id>/editar', views.edita_docente_view, name='edita_docente'),
     path('docente/<int:docente_id>/apagar', views.apaga_docente_view, name='apaga_docente'),

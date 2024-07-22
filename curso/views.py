@@ -65,6 +65,14 @@ def projetos_view(request):
     return render(request, 'curso/projetos.html', context)
 
 
+def docentes_view(request):
+    docentes = Docente.objects.all()
+    context = {
+        'docentes': docentes
+    }
+    return render(request, 'curso/docentes.html', context)
+
+
 def docente_view(request, docente_id):
     docente = Docente.objects.get(id=docente_id)
     context = {

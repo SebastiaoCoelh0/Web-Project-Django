@@ -1,0 +1,12 @@
+{% extends 'curso/layout.html' %}
+
+{% block title %}Nova Disciplina{% endblock %}
+
+{% block content %}
+    <h2>Nova Disciplina</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
