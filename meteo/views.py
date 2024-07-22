@@ -27,7 +27,7 @@ def lisboa(request):
         id_weather_type = previsao_hoje['idWeatherType']
         descricao = next(
             (item['descWeatherTypePT'] for item in classes['data'] if item['idWeatherType'] == id_weather_type), None)
-        icon = f'/static/meteo/icons/{id_weather_type}.svg'
+        icon = f"/static/meteo/w_ic_d_{previsao_hoje['idWeatherType']:02d}anim.svg"
 
         context = {
             'cidade': 'Lisboa',
