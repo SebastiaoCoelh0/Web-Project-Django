@@ -1,0 +1,29 @@
+/*Classe*/
+.button {
+    background: #1DB954;
+    color: white;
+}
+
+.button:hover {
+    background: white;
+    color: #1DB954;
+}
+
+body {
+    font-family: "Courier New", serif;
+    background: #121212;
+    color: white;
+}
+
+header {
+    background: #1DB954;
+    color: #191414;
+}
+
+a {
+    color: white;
+}
+
+.errorlist {
+    display: none;
+}
