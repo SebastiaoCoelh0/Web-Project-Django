@@ -1,13 +1,4 @@
 /*Classe*/
-.button {
-    background: #1DB954;
-    color: white;
-}
-
-.button:hover {
-    background: white;
-    color: #1DB954;
-}
 
 body {
     font-family: "Courier New", serif;
@@ -23,6 +14,13 @@ header {
 a {
     color: white;
 }
+
+button {
+    background: #1DB954;
+    color: white;
+}
+
+
 
 .errorlist {
     display: none;
