@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'pwsite',
     'novaapp',
     'autenticacao',
-
+    'meteo',
 ]
 
 MIDDLEWARE = [
