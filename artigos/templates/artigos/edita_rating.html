@@ -1,0 +1,18 @@
+{% extends 'artigos/layout.html' %}
+
+{% block content %}
+    <h2>Editar Rating no artigo: <a
+            href="{% url 'artigos:artigo' rating.artigo.id %}">{{ rating.artigo.titulo }}</a> com o valor original
+        de:{{ rating.valor }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    <p>Também pode apagar o raiting antigo:</p>
+    <form action="{% url 'artigos:apaga_rating' rating.id %}" method="post"
+          onsubmit="return confirm('Tem certeza que deseja apagar o rating?');">
+        {% csrf_token %}
+        <button type="submit">Apagar rating</button>
+    </form>
+{% endblock %}

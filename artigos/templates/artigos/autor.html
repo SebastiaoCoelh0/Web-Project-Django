@@ -1,12 +1,21 @@
 {% extends 'artigos/layout.html' %}
 
 {% block content %}
-    <h2>Artigos de {{ autor.nome }}</h2>
+    <h2>Artigos de {{ autor.username }}:</h2>
     <ul>
         {% for artigo in artigos %}
             <li>
                 <a href="{% url 'artigos:artigo' artigo.id %}">{{ artigo.titulo }}</a>
                 em {{ artigo.data_publicacao }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Comentários de {{ autor.username }} {{ comentarios.count }}:</h3>
+    <ul>
+        {% for comentario in comentarios %}
+            <li>
+                <a href="{% url 'artigos:artigo' comentario.artigo.id %}">{{ comentario.artigo.titulo }}</a>
+                em {{ comentario.data_comentario }}
             </li>
         {% endfor %}
     </ul>

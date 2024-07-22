@@ -1,0 +1,12 @@
+{% extends 'artigos/layout.html' %}
+
+{% block content %}
+    <h2>Editar Comentário no artigo: <a
+            href="{% url 'artigos:artigo' comentario.artigo.id %}">{{ comentario.artigo.titulo }}</a> feito por:<a
+            href="{% url 'artigos:autor' comentario.utilizador.id %}">{{ comentario.utilizador.username }}</a></h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Alterações</button>
+    </form>
+{% endblock %}
