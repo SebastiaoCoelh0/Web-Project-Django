@@ -9,6 +9,8 @@ def landing_page_view(request):
     context = {'weather_icon': weather_icon}
     return render(request, 'portfolio/landing_page.html', context)
 
+def videos_view(request):
+    return render(request, 'portfolio/videos.html')
 
 def get_weather_icon():
     # ID para Lisboa ou qualquer cidade que desejar

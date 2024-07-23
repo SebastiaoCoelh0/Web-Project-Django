@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos - SC</title>
+    <link rel="stylesheet" href="static/portfolio/style.css"> <!-- Inclua o CSS existente -->
+    <style>
+        .video-container {
+            display: flex;
+            justify-content: center; 
+            gap: 20px; /* Espaço entre os vídeos */
+            flex-wrap: wrap; 
+            margin: 20px; /* Espaçamento ao redor dos vídeos */
+        }
+
+        .video-wrapper {
+            flex: 1;
+            max-width: 45%; 
+        }
+
+        .video-wrapper iframe {
+            width: 100%; /* Faz com que o iframe ocupe toda a largura do seu contêiner */
+            height: 315px; /* Altura fixa para os vídeos */
+            border: none; /* Remove a borda do iframe */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <a href="{% url 'portfolio:landing_page' %}"><h1>Portfolio</h1></a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <br>
+            <br>
+            <h2>Videos</h2>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="static/portfolio/teste_selenium.mp4" title="Video Selenium" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Sebastião Coelho - 2024</p>
+    </footer>
+</body>
+</html>
