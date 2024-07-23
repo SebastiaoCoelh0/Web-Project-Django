@@ -7,8 +7,6 @@
         <p>mensagem: {{ mensagem }}</p>
     {% endif %}
 
-    <!-- formulário que pede as credenciais
-    e as reenvia para a view 'login'. -->
 
     <form action="{% url 'autenticacao:login' %}" method="post">
         {% csrf_token %}
