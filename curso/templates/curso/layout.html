@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +36,12 @@
             - <a href="{% url 'autenticacao:login' %}">Login</a>
             {% load socialaccount %}
             {% providers_media_js %}
-            <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
-            <a href="{% url 'autenticacao:registo' %}"><button>Registo<button></a>
+            <a href="{% provider_login_url 'google' %}">
+                <button>Login with Google</button>
+            </a>
+            <a href="{% url 'autenticacao:registo' %}">
+                <button>Registo</button>
+            </a>
         {% endif %}
     </nav>
     <br>

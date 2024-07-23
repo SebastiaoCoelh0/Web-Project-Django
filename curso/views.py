@@ -77,7 +77,7 @@ def docente_view(request, docente_id):
     docente = Docente.objects.get(id=docente_id)
     context = {
         'docente': docente,
-        'disciplinas': docente.disciplinas.all().filter(docente_id=docente_id)
+        'disciplinas': docente.disciplinas.all()
     }
     return render(request, 'curso/docente.html', context)
 

@@ -24,8 +24,12 @@
             - <a href="{% url 'autenticacao:login' %}">Login</a>
             {% load socialaccount %}
             {% providers_media_js %}
-            <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
-            <a href="{% url 'autenticacao:registo' %}"><button>Registo<button></a>
+            <a href="{% provider_login_url 'google' %}">
+                <button>Login with Google</button>
+            </a>
+            <a href="{% url 'autenticacao:registo' %}">
+                <button>Registo</button>
+            </a>
         {% endif %}
     </nav>
     <br>
@@ -35,8 +39,6 @@
 </main>
 
 <footer>
-    <a href="{% url 'portfolio:landing_page' %}"><h1>Portfolio</h1></a>
-    <br>
     <p>Sebastião Coelho - 2024</p></footer>
 </body>
 </html>

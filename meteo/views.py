@@ -5,8 +5,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 
-def get_weather_data(global_id_local):
-    url = f"https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{global_id_local}.json"
+def get_weather_data(city_id):
+    url = f"https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{city_id}.json"
     response = requests.get(url)
     return response.json()
 
@@ -142,6 +142,7 @@ def avisos_meteorologicos_view(request):
 
     return JsonResponse(filtered_data, safe=False)
 
+
 def informacao_sismicidade_view(request, idArea):
     url = f"https://api.ipma.pt/open-data/observation/seismic/{idArea}.json"
 
@@ -163,6 +164,7 @@ def informacao_sismicidade_view(request, idArea):
     filtered_data = data['data']
 
     return JsonResponse(filtered_data, safe=False)
+
 
 def observacao_meteorologica_view(request):
     url = "https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json"
