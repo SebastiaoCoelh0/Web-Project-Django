@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'novaapp',
     'autenticacao',
     'meteo',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
