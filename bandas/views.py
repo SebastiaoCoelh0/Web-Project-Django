@@ -154,7 +154,7 @@ def edita_musica_view(request, musica_id):
         form = MusicaForm(request.POST or None, request.FILES, instance=musica)
         if form.is_valid():
             form.save()
-            return redirect('bandas:musica', album_id=musica.id)
+            return redirect('bandas:musica', musica_id=musica_id)
     else:
         form = MusicaForm(instance=musica)
 

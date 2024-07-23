@@ -29,6 +29,7 @@ class Musica(models.Model):
     duracao = models.CharField(max_length=6)
     link_spotify = models.URLField(null=True, blank=True)
     letra = models.TextField(default='', null=True, blank=True)
+    biografia = models.TextField(default='', null=True, blank=True)
 
     def __str__(self):
         return self.titulo

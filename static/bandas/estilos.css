@@ -1,9 +1,28 @@
-/*Classe*/
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+
+/* Global Styles */
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: "Courier New", serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
     background: #121212;
     color: white;
+}
+
+/* Header and Footer Styles */
+header, footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
 }
 
 header {
@@ -11,17 +30,166 @@ header {
     color: #191414;
 }
 
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+/* Band List Styles */
+.bandas-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.banda-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.banda-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.banda-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.banda-overlay span {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.banda-item:hover .banda-overlay {
+    opacity: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .bandas-list {
+        grid-template-columns: 1fr;
+    }
+
+    .banda-item, .album-item, .musica-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .banda-item img, .album-item img, .musica-item img {
+        margin-bottom: 10px;
+    }
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background: #444;
+    border-radius: 5px;
+}
+
+
+/* Link Styles */
 a {
     color: white;
 }
 
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: #666;
+}
+
+a:hover {
+    color: #1db954;
+}
+
+header a:hover {
+    color: #121212;
+
+}
+
+a:active {
+    color: white;
+}
+
+/* Button Styles */
 button {
+    background: white;
+    color: #1DB954;
+}
+
+button:hover{
     background: #1DB954;
     color: white;
 }
 
-
-
+/* Error List Styles */
 .errorlist {
     display: none;
+}
+
+/* Background Pattern */
+.background-pattern {
+    background-image: url('https://pixabay.com/get/g653b7025f2307ff7dfaa71a0cbb36d8e2c693f8ef0970d38f3943e2c65050d65bb79e4bfae944ac79db6b6a7d32adf39_1920.jpg');
+    background-size: cover;
+}
+
+/* Biografia Styles */
+.biografia::first-letter {
+    font-size: 200%;
+    color: #900;
+}
+
+.biografia::first-line {
+    font-weight: bold;
+}
+
+/* Image Border Styles */
+img {
+    border: 5px solid #333;
+    border-top-color: white;
+    border-right-color: white;
+    border-bottom-color: #1db954;
+    border-left-color: #1db954;
+}
+
+/* Help Text Styles */
+.helptext {
+    font-size: 0.9em;
+    color: #666;
 }

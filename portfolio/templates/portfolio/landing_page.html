@@ -9,29 +9,69 @@
 </head>
 <body>
 <header>
-    <div class="hero-container">
+    <nav>
+        <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#web-projects">Web Projects</a></li>
+            <li><a href="#my-links">My Links</a></li>
+        </ul>
+    </nav>
+    <div id="top" class="hero-container">
         <img src='static/portfolio/hero.jpg' alt="Background" class="hero-background">
         <div class="hero-content">
             <h1>Sebastião Coelho</h1>
-            <p>Information Technology Management <b>Student</b> | Rugby <b>Athlete</b> | Technical <b>Consultant</b> for
-                Digital Transformation</p>
+            <p>Information Technology Management <b>Student</b> | Rugby <b>Athlete</b> | <b>Technical Consultant</b> for Digital Transformation</p>
             <p id="clock"></p>
-            <nav>
-                <ul>
-                    <li><a href="#about-me">About Me</a></li>
-                    <li><a href="#web-projects">Web Projects</a></li>
-                    <li><a href="#my-links">My Links</a></li>
-                </ul>
-            </nav>
         </div>
     </div>
 </header>
 <main>
     <section id="about-me" class="about-me">
         <h2>About Me</h2>
-        <p>I’m a sports addicted student who is eager to learn and experience new things.</p>
-        <p>I have already started working on some jobs related to sports, but now that I'm in college I'm developing a
-            love for coding and business.</p>
+        <div class="about-me-content">
+            <img src="static/portfolio//about-me-image.png" alt="About Me Image" class="about-me-image">
+            <div class="about-me-text">
+                <p>I’m a sports addicted student who is eager to learn and experience new things.</p>
+                <p>I have already started working on some jobs related to sports, but now that I'm in college I'm developing a love for coding and business.</p>
+                <div class="about-me-menu">
+                    <button class="tablink" onclick="openTab(event, 'skills')">Skills</button>
+                    <button class="tablink" onclick="openTab(event, 'programing')">Programing Languages</button>
+                    <button class="tablink" onclick="openTab(event, 'languages')">Languages</button>
+                </div>
+                <div id="skills" class="tabcontent">
+                    <h3>Skills</h3>
+                    <ul>
+                        <li>Comunication</li>
+                        <li>Lidership and team spirit</li>
+                        <li>Problem Solving</li>
+                        <li>Commitment</li>
+                        <li>Sense of Responsibility</li>
+                        <li>Autonomy</li>
+                        <li>Proactivity</li>
+                    </ul>
+                </div>
+                <div id="programing" class="tabcontent">
+                    <h3>Programing Languages</h3>
+                    <ul>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>Html</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Kotlin</li>
+                    </ul>
+                </div>
+                <div id="languages" class="tabcontent">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Portuguese</li>
+                        <li>English</li>
+                        <li>Spanish</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
     <section id="web-projects" class="web-projects">
         <h2>Web Projects</h2>

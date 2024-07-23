@@ -6,7 +6,9 @@
     <p><b>Ano lançamento do album: </b>{{ album.lancamento }}</p>
     <p><b>Duração: </b> {{ musica.duracao }} </p>
     <p><b>Link do Spotify: </b><a href="{{ musica.link_spotify }}}" target="_blank">aqui</a></p>
-
+    {% if musica.letra %}
+    <p><b>Letra: </b> {{ musica.letra | linebreaks }} </p>
+    {% endif %}
     {% if request.user.is_authenticated %}
         <p><b>Opções do editor:</b></p>
         <ul>

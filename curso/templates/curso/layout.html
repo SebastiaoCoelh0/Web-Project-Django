@@ -3,19 +3,8 @@
 <head>
     <title>App Curso</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background: white;
-            color: #333;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px;
-        }
-
-    </style>
+    {% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'curso/styles.css' %}">
 </head>
 <body>
 <header>
