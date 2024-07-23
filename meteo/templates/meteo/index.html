@@ -1,7 +1,13 @@
-{% extends 'meteo/layout.html' %}
+{% extends "meteo/layout.html" %}
 
 {% block content %}
-    <h1>Previsão Meteorológica</h1>
-    <p><a href="{% url 'meteo:lisboa' %}">Previsão para Lisboa</a></p>
-    <p><a href="{% url 'meteo:previsao' %}">Previsão para Outra Cidade Portuguesa</a></p>
+<div class="content-wrapper">
+    <h1>Bem-vindo à Aplicação de Meteorologia</h1>
+    <p>Consulte a previsão do tempo para hoje e para os próximos 5 dias.</p>
+    <ul>
+        <li><a href="{% url 'meteo:lisboa' %}">Previsão do tempo para Lisboa hoje</a></li>
+        <li><a href="{% url 'meteo:previsao' %}">Previsão do tempo para os próximos 5 dias em Lisboa</a></li>
+        <li><a href="{% url 'meteo:api_documentation' %}">Documentação da API</a></li>
+    </ul>
+</div>
 {% endblock %}

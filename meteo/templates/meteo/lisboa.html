@@ -1,11 +1,16 @@
-{% extends 'meteo/layout.html' %}
+{% extends "meteo/layout.html" %}
 
 {% block content %}
-    <h1>Previsão para Lisboa</h1>
-    <p>Cidade: {{ cidade }}</p>
-    <p>Data: {{ data }}</p>
-    <p>Temperatura Mínima: {{ temp_min }}°C</p>
-    <p>Temperatura Máxima: {{ temp_max }}°C</p>
-    <p>Descrição: {{ descricao }}</p>
-    <img src="{{ icon }}" alt="Icone do Tempo">
+<div class="weather-container">
+    <h1>Previsão do Tempo para {{ cidade }} Hoje</h1>
+    <div class="weather-info">
+        <img src="{{ icon_url }}" class="weather-icon" alt="Icone de tempo">
+        <div class="weather-details">
+            <p>Data: {{ dataDeHoje }}</p>
+            <p>Temperatura Mínima: {{ min_temp }}°C</p>
+            <p>Temperatura Máxima: {{ max_temp }}°C</p>
+            <p>Descrição do Tempo: {{ descricaoTempo }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

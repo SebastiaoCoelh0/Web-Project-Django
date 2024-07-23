@@ -1,0 +1,61 @@
+{% extends "meteo/layout.html" %}
+
+{% block content %}
+<h1>Documentação da API de Meteorologia</h1>
+<h2>Base URL</h2>
+<p><code>https://a22202310.pythonanywhere.com/api/</code></p>
+
+<h2>Endpoints Disponíveis</h2>
+
+<h3>Listar Cidades</h3>
+<p><strong>Método:</strong> GET</p>
+<p><strong>URL:</strong> <code>api/cidades/</code></p>
+<p><strong>Descrição:</strong> Retorna uma lista de todas as cidades disponíveis.</p>
+
+<h3>Previsão de Hoje para uma Cidade</h3>
+<p><strong>Método:</strong> GET</p>
+<p><strong>URL:</strong> <code>api/previsao_hoje/&lt;int:cidade_id&gt;/</code></p>
+<p><strong>Descrição:</strong> Retorna a previsão do tempo para hoje para a cidade especificada.</p>
+<p><strong>Parâmetros:</strong></p>
+<ul>
+    <li><code>cidade_id</code> (integer): ID da cidade.</li>
+</ul>
+<p><strong>Resposta:</strong> JSON</p>
+<pre>
+{
+    "cidade": "Lisboa",
+    "data": "2023-07-23",
+    "min_temp": 18,
+    "max_temp": 27,
+    "descricaoTempo": "Céu limpo",
+    "precipitacao": 0,
+    "icon_url": "https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_01anim.svg"
+}
+</pre>
+
+<h3>Previsão dos Próximos 5 Dias para uma Cidade</h3>
+<p><strong>Método:</strong> GET</p>
+<p><strong>URL:</strong> <code>api/previsao_proximos_5_dias/&lt;int:cidade_id&gt;/</code></p>
+<p><strong>Descrição:</strong> Retorna a previsão do tempo para os próximos 5 dias para a cidade especificada.</p>
+<p><strong>Parâmetros:</strong></p>
+<ul>
+    <li><code>cidade_id</code> (integer): ID da cidade.</li>
+</ul>
+<p><strong>Resposta:</strong> JSON</p>
+<pre>
+{
+    "cidade": "Lisboa",
+    "previsoes": [
+        {
+            "data": "2023-07-23",
+            "min_temp": 18,
+            "max_temp": 27,
+            "descricaoTempo": "Céu limpo",
+            "precipitacao": 0,
+            "icon_url": "https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_01anim.svg"
+        },
+        ...
+    ]
+}
+</pre>
+{% endblock %}
