@@ -1,189 +1,112 @@
+from datetime import datetime
+
 import requests
 from django.shortcuts import render
-from django.http import JsonResponse
 
-def obter_nome_cidade(cidade_id):
-    cidades_url = 'https://api.ipma.pt/open-data/distrits-islands.json'
-    cidades_response = requests.get(cidades_url)
 
-    if cidades_response.status_code != 200:
-        return "Nome da cidade não disponível"
+def get_weather_data(global_id_local):
+    url = f"https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{global_id_local}.json"
+    response = requests.get(url)
+    return response.json()
 
-    dic_cidades = cidades_response.json()
-    cidades_data = dic_cidades.get('data', [])
 
-    for cidade in cidades_data:
-        if cidade.get('globalIdLocal') == cidade_id:
-            return cidade.get('local')
+def get_city_list():
+    url = "https://api.ipma.pt/open-data/distrits-islands.json"
+    response = requests.get(url)
+    return response.json()
 
-    return "Nome da cidade não disponível"
 
-def listar_cidades(request):
-    cidades_url = 'https://api.ipma.pt/open-data/distrits-islands.json'
-    cidades_response = requests.get(cidades_url)
-    if cidades_response.status_code == 200:
-        dic_cidades = cidades_response.json()
-        cidades_data = dic_cidades.get('data', [])
-        cidades = [{"nome": cidade.get('local'), "id": cidade.get('globalIdLocal')} for cidade in cidades_data]
-        return JsonResponse({"cidades": cidades})
-    else:
-        return JsonResponse({"error": "Erro ao consultar a API do IPMA"}, status=500)
+def get_wind_details():
+    url = "https://api.ipma.pt/open-data/wind-speed-daily-classe.json"
+    response = requests.get(url)
+    return response.json()
 
-def previsao_hojeAPI(request, cidade_id):
-    previsao_url = f'https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{cidade_id}.json'
-    weather_types_url = 'https://api.ipma.pt/open-data/weather-type-classe.json'
 
-    previsao_response = requests.get(previsao_url)
-    if previsao_response.status_code == 200:
-        dic_previsao = previsao_response.json()
-        previsao_hoje = dic_previsao['data'][0]
-    else:
-        return JsonResponse({"error": "Erro ao consultar a API do IPMA"}, status=500)
+def get_weather_type_classes():
+    url = "https://api.ipma.pt/open-data/weather-type-classe.json"
+    response = requests.get(url)
+    return response.json()
 
-    weather_types_response = requests.get(weather_types_url)
-    if weather_types_response.status_code == 200:
-        weather_types_data = weather_types_response.json()
-        weather_types_list = weather_types_data.get('data', [])
-        weather_types = {item['idWeatherType']: item for item in weather_types_list}
-        weather_description = weather_types.get(previsao_hoje['idWeatherType'], {}).get('descWeatherTypePT', 'Descrição não disponível')
-    else:
-        weather_description = 'Descrição não disponível'
-
-    resposta = {
-        "cidade": obter_nome_cidade(cidade_id),
-        "data": previsao_hoje.get('forecastDate', 'N/A'),
-        "min_temp": previsao_hoje.get('tMin', 'N/A'),
-        "max_temp": previsao_hoje.get('tMax', 'N/A'),
-        "descricaoTempo": weather_description,
-        "precipitacao": previsao_hoje.get('precipitaProb', 'N/A'),
-        "icon_url": f"https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_{previsao_hoje['idWeatherType']:02d}anim.svg"
-    }
-
-    return JsonResponse(resposta)
-
-def previsao_proximos_5_diasAPI(request, cidade_id):
-    previsao_url = f'https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{cidade_id}.json'
-    weather_types_url = 'https://api.ipma.pt/open-data/weather-type-classe.json'
-
-    previsao_response = requests.get(previsao_url)
-    if previsao_response.status_code == 200:
-        dic_previsao = previsao_response.json()
-        previsoes = dic_previsao['data'][:5]
-    else:
-        return JsonResponse({"error": "Erro ao consultar a API do IPMA"}, status=500)
-
-    weather_types_response = requests.get(weather_types_url)
-    if weather_types_response.status_code == 200:
-        weather_types_data = weather_types_response.json()
-        weather_types_list = weather_types_data.get('data', [])
-        weather_types = {item['idWeatherType']: item for item in weather_types_list}
-    else:
-        weather_types = {}
-
-    previsao_proximos_5_dias = []
-    for previsao in previsoes:
-        weather_description = weather_types.get(previsao['idWeatherType'], {}).get('descWeatherTypePT', 'Descrição não disponível')
-        previsao_proximos_5_dias.append({
-            "data": previsao.get('forecastDate', 'N/A'),
-            "min_temp": previsao.get('tMin', 'N/A'),
-            "max_temp": previsao.get('tMax', 'N/A'),
-            "descricaoTempo": weather_description,
-            "precipitacao": previsao.get('precipitaProb', 'N/A'),
-            "icon_url": f"https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_{previsao['idWeatherType']:02d}anim.svg"
-        })
-
-    resposta = {
-        "cidade": obter_nome_cidade(cidade_id),
-        "previsoes": previsao_proximos_5_dias
-    }
-
-    return JsonResponse(resposta)
-
-def lisboa(request):
-    previsaoLisboa_url = 'https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json'
-    weather_types_url = 'https://api.ipma.pt/open-data/weather-type-classe.json'
-
-    previsao_response = requests.get(previsaoLisboa_url)
-    if previsao_response.status_code == 200:
-        dic_previsao = previsao_response.json()
-        previsao_hoje = dic_previsao['data'][0]
-    else:
-        previsao_hoje = {}
-
-    weather_types_response = requests.get(weather_types_url)
-    if weather_types_response.status_code == 200:
-        weather_types_data = weather_types_response.json()
-        weather_types_list = weather_types_data.get('data', [])
-        weather_types = {item['idWeatherType']: item for item in weather_types_list}
-    else:
-        weather_types = {}
-
-    city_name = "Lisboa"
-    min_temp = previsao_hoje.get('tMin', 'N/A')
-    max_temp = previsao_hoje.get('tMax', 'N/A')
-    dataDeHoje = previsao_hoje.get('forecastDate', 'N/A')
-    weather_type_id = previsao_hoje.get('idWeatherType', 'N/A')
-    weather_description = weather_types.get(weather_type_id, {}).get('descWeatherTypePT', 'N/A')
-    icon_filename = f"w_ic_d_{weather_type_id:02d}anim.svg"
-    icon_url = f"/static/meteo/{icon_filename}"
-
-    context = {
-        'cidade': city_name,
-        'min_temp': min_temp,
-        'max_temp': max_temp,
-        'dataDeHoje': dataDeHoje,
-        'descricaoTempo': weather_description,
-        'icon_url': icon_url,
-    }
-
-    return render(request, 'meteo/lisboa.html', context)
-
-def previsao_proximos_5_dias(request):
-    cidade_id = 1110600
-    previsao_url = f'https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/{cidade_id}.json'
-    weather_types_url = 'https://api.ipma.pt/open-data/weather-type-classe.json'
-
-    previsao_response = requests.get(previsao_url)
-    if previsao_response.status_code == 200:
-        previsao_data = previsao_response.json()['data'][:5]
-    else:
-        previsao_data = []
-
-    weather_types_response = requests.get(weather_types_url)
-    if (weather_types_response.status_code == 200):
-        weather_types_data = weather_types_response.json()
-        weather_types_list = weather_types_data.get('data', [])
-        weather_types = {item['idWeatherType']: item for item in weather_types_list}
-    else:
-        weather_types = {}
-
-    proximos_5_dias = []
-    for dia in previsao_data:
-        data = dia.get('forecastDate', 'N/A')
-        min_temp = dia.get('tMin', 'N/A')
-        max_temp = dia.get('tMax', 'N/A')
-        weather_type_id = dia.get('idWeatherType', 'N/A')
-        weather_description = weather_types.get(weather_type_id, {}).get('descWeatherTypePT', 'N/A')
-        icon_filename = f"w_ic_d_{weather_type_id:02d}anim.svg"
-        icon_url = f"https://www.ipma.pt/bin/images/weather-symbols/{icon_filename}"
-
-        proximos_5_dias.append({
-            'data': data,
-            'min_temp': min_temp,
-            'max_temp': max_temp,
-            'descricaoTempo': weather_description,
-            'icon_url': icon_url
-        })
-
-    context = {
-        'cidade': 'Lisboa',
-        'previsao_proximos_5_dias': proximos_5_dias
-    }
-
-    return render(request, 'meteo/previsao.html', context)
 
 def index_view(request):
-    return render(request, 'meteo/index.html')
+    cities_data = get_city_list()
+    cities = cities_data['data']
+    context = {'cities': cities}
+    return render(request, 'meteo/index.html', context)
 
-def api_documentation(request):
-    return render(request, 'meteo/api_documentation.html')
+
+def previsao_view(request):
+    city_id = request.GET.get('city_id')
+    if not city_id:
+        return render(request, 'meteo/previsao.html', {'error': 'No city selected.'})
+
+    days = []
+    types = {}
+    wind_details = {}
+    wind_data_raw = get_wind_details()
+    wind_data = wind_data_raw['data']
+    weather_data_raw = get_weather_data(city_id)
+    weather_data = weather_data_raw['data']
+    weather_types_raw = get_weather_type_classes()
+    weather_types = weather_types_raw['data']
+
+    for wind_type in wind_data:
+        wind_details[wind_type['classWindSpeed']] = wind_type['descClassWindSpeedDailyEN']
+    for weather_type in weather_types:
+        types[weather_type['idWeatherType']] = weather_type['descWeatherTypeEN']
+    for day in weather_data:
+        day['weatherType'] = types[day['idWeatherType']]
+        day['windSpeed'] = wind_details[str(day['classWindSpeed'])]
+        if day['idWeatherType'] < 10:
+            day['image'] = f"/static/meteo/w_ic_d_0{day['idWeatherType']}anim.svg"
+        else:
+            day['image'] = f"/static/meteo/w_ic_d_{day['idWeatherType']}anim.svg"
+        # print(day['image'])
+        day['forecastDate'] = datetime.strptime(day['forecastDate'], '%Y-%m-%d')
+        days.append(day)
+
+    context = {
+        'city': search_for_city_name(city_id),
+        'days': days,
+    }
+    return render(request, 'meteo/previsao.html', context)
+
+
+def search_for_city_name(city_id):
+    cities_data = get_city_list()
+    cities = cities_data['data']
+
+    for city in cities:
+        if int(city['globalIdLocal']) == int(city_id):
+            return city['local']
+    return 'Cidade não encontrada'
+
+
+def lisboa_view(request):
+    city_id = 1110600  # ID para Lisboa
+    weather_data_raw = get_weather_data(city_id)
+    weather_types_raw = get_weather_type_classes()
+
+    if 'data' in weather_data_raw and len(weather_data_raw['data']) > 0:
+        today_weather = weather_data_raw['data'][0]  # Obter a previsão de hoje
+        weather_types = {item['idWeatherType']: item for item in weather_types_raw['data']}
+        today_weather['weatherType'] = weather_types[today_weather['idWeatherType']]['descWeatherTypePT']
+        if today_weather['idWeatherType'] < 10:
+            today_weather['image'] = f"/static/meteo/w_ic_d_0{today_weather['idWeatherType']}anim.svg"
+        else:
+            today_weather['image'] = f"/static/meteo/w_ic_d_{today_weather['idWeatherType']}anim.svg"
+        # print(today_weather['image'])
+        today_weather['forecastDate'] = datetime.strptime(today_weather['forecastDate'], '%Y-%m-%d').strftime(
+            '%Y-%m-%d')
+    else:
+        today_weather = {}
+
+    context = {
+        'city': 'Lisboa',
+        'weather': today_weather,
+    }
+    return render(request, 'meteo/lisboa.html', context)
+
+
+def api_view(request):
+    return render(request, 'meteo/api.html')

@@ -1,25 +1,24 @@
 {% extends "meteo/layout.html" %}
 
 {% block content %}
-<div class="content-wrapper">
-    <h1>Previsão do Tempo para os Próximos 5 Dias em Lisboa</h1>
+    <div class="content-wrapper">
+        <h1>Previsão do Tempo para {{ city }} nos Próximos 5 Dias</h1>
 
-    {% if previsao_proximos_5_dias %}
-        {% for dia in previsao_proximos_5_dias %}
-            <div class="weather-container">
-                <div class="weather-info5">
-                    <img src="{{ dia.icon_url }}" class="weather-icon5" alt="Icone de tempo">
-                    <div class="weather-details5">
-                        <h2>{{ dia.data }}</h2>
-                        <p class="weather-item5">Temperatura Mínima: {{ dia.min_temp }}°C</p>
-                        <p class="weather-item5">Temperatura Máxima: {{ dia.max_temp }}°C</p>
-                        <p class="weather-item5">Descrição do Tempo: {{ dia.descricaoTempo }}</p>
+        {% if days %}
+            <div class="weather-forecast">
+                {% for day in days %}
+                    <div class="weather-day">
+                        <p>Data: {{ day.forecastDate|date:"Y-m-d" }}</p>
+                        <img src="{{ day.image }}" class="weather-icon" alt="Icone de tempo">
+                        <p>Temperatura Mínima: {{ day.tMin }}°C</p>
+                        <p>Temperatura Máxima: {{ day.tMax }}°C</p>
+                        <p>Descrição do Tempo: {{ day.weatherType }}</p>
+                        <p>Velocidade do Vento: {{ day.windSpeed }}</p>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-    {% else %}
-        <p>Não há previsão disponível para os próximos 5 dias.</p>
-    {% endif %}
-</div>
+        {% else %}
+            <p>Não há previsão disponível para os próximos 5 dias.</p>
+        {% endif %}
+    </div>
 {% endblock %}

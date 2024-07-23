@@ -1,13 +1,23 @@
 {% extends "meteo/layout.html" %}
 
 {% block content %}
-<div class="content-wrapper">
-    <h1>Bem-vindo à Aplicação de Meteorologia</h1>
-    <p>Consulte a previsão do tempo para hoje e para os próximos 5 dias.</p>
-    <ul>
-        <li><a href="{% url 'meteo:lisboa' %}">Previsão do tempo para Lisboa hoje</a></li>
-        <li><a href="{% url 'meteo:previsao' %}">Previsão do tempo para os próximos 5 dias em Lisboa</a></li>
-        <li><a href="{% url 'meteo:api_documentation' %}">Documentação da API</a></li>
-    </ul>
-</div>
+    <div class="content-wrapper">
+        <h1>Bem-vindo à Aplicação de Meteorologia</h1>
+        <h2>Previsão do tempo para Lisboa hoje <a href="{% url 'meteo:weather_lisboa' %}">
+            <button>Aqui</button>
+        </a></h2>
+        <h2>Documentação da API <a href="{% url 'meteo:api' %}">
+            <button>Aqui</button>
+        </a></h2>
+        <h2>Previsão do tempo para os próximos 5 dias</h2>
+        <form method="get" action="{% url 'meteo:weather_previsao' %}">
+            <label for="city">Selecione uma cidade:</label>
+            <select name="city_id" id="city">
+                {% for city in cities %}
+                    <option value="{{ city.globalIdLocal }}">{{ city.local }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ver Previsão</button>
+        </form>
+    </div>
 {% endblock %}
