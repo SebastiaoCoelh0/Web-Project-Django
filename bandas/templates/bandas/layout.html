@@ -24,7 +24,10 @@
             - <a href="{% url 'autenticacao:logout' %}">Logout</a>
         {% else %}
             - <a href="{% url 'autenticacao:login' %}">Login</a>
-            - <a href="{% url 'autenticacao:registo' %}">Registo</a>
+            {% load socialaccount %}
+            {% providers_media_js %}
+            <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
+            <a href="{% url 'autenticacao:registo' %}"><button>Registo<button></a>
         {% endif %}
     </nav>
     <br>

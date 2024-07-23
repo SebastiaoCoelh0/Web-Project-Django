@@ -115,53 +115,92 @@ def api_view(request):
 
 def avisos_meteorologicos_view(request):
     url = "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json"
-    response = requests.get(url)
-    data = response.json()
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Lança uma exceção para erros HTTP
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Error fetching data from IPMA: " + str(e)}, status=500)
+
+    try:
+        data = response.json()
+    except ValueError as e:
+        return JsonResponse({"error": "Failed to parse JSON response: " + str(e)}, status=500)
+
     filtered_data = [
         {
-            "text": item["text"],
-            "awarenessTypeName": item["awarenessTypeName"],
-            "idAreaAviso": item["idAreaAviso"],
-            "startTime": item["startTime"],
-            "awarenessLevelID": item["awarenessLevelID"],
-            "endTime": item["endTime"]
+            "text": item.get("text", ""),  # Usar .get() para evitar KeyError
+            "awarenessTypeName": item.get("awarenessTypeName", ""),
+            "idAreaAviso": item.get("idAreaAviso", ""),
+            "startTime": item.get("startTime", ""),
+            "awarenessLevelID": item.get("awarenessLevelID", ""),
+            "endTime": item.get("endTime", "")
         }
         for item in data
-        if item["awarenessLevelID"] in ["yellow", "orange", "red"]
+        if item.get("awarenessLevelID") in ["yellow", "orange", "red"]
     ]
-    return JsonResponse(filtered_data)
+
+    return JsonResponse(filtered_data, safe=False)
 
 def informacao_sismicidade_view(request, idArea):
     url = f"https://api.ipma.pt/open-data/observation/seismic/{idArea}.json"
-    response = requests.get(url)
-    data = response.json()
-    filtered_data = [
-        {
-            "time": item["time"],
-            "local": item["local"],
-            "lat": item["lat"],
-            "lon": item["lon"],
-            "magnitud": item["magnitud"],
-            "magType": item["magType"],
-            "degree": item["degree"],
-            "dataUpdate": item["dataUpdate"],
-            "obsRegion": item["obsRegion"],
-            "depth": item["depth"]
-        }
-        for item in data["data"]
-    ]
-    return JsonResponse(filtered_data)
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Lança uma exceção para erros HTTP
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Error fetching data from IPMA: " + str(e)}, status=500)
+
+    try:
+        data = response.json()
+    except ValueError as e:
+        return JsonResponse({"error": "Failed to parse JSON response: " + str(e)}, status=500)
+
+    # Verificar se 'data' é do tipo dict e se contém a chave 'data'
+    if not isinstance(data, dict) or 'data' not in data:
+        return JsonResponse({"error": "Unexpected response format from IPMA"}, status=500)
+
+    filtered_data = data['data']
+
+    return JsonResponse(filtered_data, safe=False)
 
 def observacao_meteorologica_view(request):
     url = "https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json"
-    response = requests.get(url)
-    data = response.json()
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Lança uma exceção para erros HTTP
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Error fetching data from IPMA: " + str(e)}, status=500)
+
+    try:
+        data = response.json()
+    except ValueError as e:
+        return JsonResponse({"error": "Failed to parse JSON response: " + str(e)}, status=500)
+
+    # Verificar se 'data' é do tipo dict
+    if not isinstance(data, dict):
+        return JsonResponse({"error": "Unexpected response format from IPMA"}, status=500)
+
     filtered_data = []
+
     for date_time, stations in data.items():
+        if not isinstance(stations, dict):
+            continue  # Ignorar entradas onde 'stations' não é um dicionário
         for station_id, measurements in stations.items():
+            if not isinstance(measurements, dict):
+                continue  # Ignorar entradas onde 'measurements' não é um dicionário
             filtered_data.append({
                 "dateTime": date_time,
                 "stationId": station_id,
-                **measurements
+                "intensidadeVentoKM": measurements.get("intensidadeVentoKM", -99.0),
+                "temperatura": measurements.get("temperatura", -99.0),
+                "idDireccVento": measurements.get("idDireccVento", -99),
+                "precAcumulada": measurements.get("precAcumulada", -99.0),
+                "intensidadeVento": measurements.get("intensidadeVento", -99.0),
+                "humidade": measurements.get("humidade", -99.0),
+                "pressao": measurements.get("pressao", -99.0),
+                "radiacao": measurements.get("radiacao", -99.0)
             })
-    return JsonResponse(filtered_data)
+
+    return JsonResponse(filtered_data, safe=False)

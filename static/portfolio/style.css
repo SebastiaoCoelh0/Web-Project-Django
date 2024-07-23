@@ -8,7 +8,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 /* Basic styles */
 body {
     font-family: Arial, sans-serif;
@@ -93,23 +92,9 @@ nav ul li a:hover {
     margin-bottom: 1em;
 }
 
-.about-me {
-    margin-top: 20px; /* Ajuste a margem superior conforme necessário */
-}
-
-#clock {
-    font-size: 1.2em;
-    margin: 1em 0;
-}
-
-main {
-    padding: 80px 20px 20px; /* Add padding to avoid content overlap with fixed menu */
-    max-width: 1200px;
-    margin: auto;
-}
-
-section {
-    margin-bottom: 40px;
+.about-me, .web-projects, .my-links {
+    text-align: center; /* Centraliza o texto das seções */
+    padding: 20px; /* Adiciona algum padding para as seções */
 }
 
 section h2 {
@@ -120,6 +105,7 @@ section h2 {
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 ul li {
@@ -128,7 +114,7 @@ ul li {
 
 ul li a {
     color: #333;
-    text-decoration: none;
+    text-decoration: none
 }
 
 ul li a:hover {
@@ -150,20 +136,26 @@ main {
 /* About Me Section */
 .about-me-content {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column; /* Alinha a imagem e o texto verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    max-width: 800px; /* Define uma largura máxima para centralizar o conteúdo */
+    margin: 0 auto; /* Centraliza o conteúdo */
 }
 
 .about-me-image {
     max-width: 200px;
-    margin-right: 20px;
+    margin-bottom: 20px; /* Espaçamento abaixo da imagem */
 }
 
 .about-me-text {
     max-width: 600px;
+    text-align: left; /* Ajuste o alinhamento do texto conforme necessário */
 }
 
 .about-me-menu {
     margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
 }
 
 .tablink {
@@ -173,7 +165,7 @@ main {
     padding: 10px;
     cursor: pointer;
     transition: 0.3s;
-    margin-right: 10px;
+    margin: 0 5px; /* Ajusta a margem para espaçar os botões */
 }
 
 .tablink:hover {
@@ -189,4 +181,23 @@ main {
     margin-bottom: 10px;
 }
 
+#top.hero-container a {
+    display: inline-block; /* Faz com que o link se comporte como um botão */
+    color: #fff; /* Cor do texto dos botões */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    padding: 10px 15px; /* Espaçamento interno dos botões */
+    border-radius: 5px; /* Bordas arredondadas dos botões */
+    background-color: rgba(128, 128, 128, 0.5); /* Cor de fundo cinza transparente */
+    transition: background-color 0.3s, color 0.3s; /* Efeito de transição para hover */
+}
 
+#top.hero-container a:hover {
+    background-color: rgba(128, 128, 128, 0.7); /* Cor de fundo cinza transparente ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}
+.about-me-image {
+    max-width: 600px; /* Ajusta o tamanho máximo da imagem para 300px */
+    width: 100%; /* Garante que a imagem não ultrapasse o tamanho máximo */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+}

@@ -26,6 +26,7 @@ def login_view(request):
             username=request.POST['username'],
             password=request.POST['password']
         )
+
         if user:
             # Se as credenciais são válidas, faz login e redireciona
             login(request, user)
@@ -33,10 +34,16 @@ def login_view(request):
         else:
             # Se inválidas, reenvia para login com mensagem
             render(request, 'autenticacao/login.html', {
-                'mensagem': 'Credenciais inválidas'
+                'mensagem':'Credenciais inválidas'
             })
 
-    return render(request, 'autenticacao/login.html')
+            return render(request, 'autenticacao/login.html')
+
+    # adicionar
+    if request.user.is_authenticated:
+        return render(request, 'autenticacao/user.html')
+    else:
+        return render(request, 'autenticacao/login.html')
 
 
 def logout_view(request):
