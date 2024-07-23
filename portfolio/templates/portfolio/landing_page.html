@@ -14,40 +14,38 @@
         <div class="hero-content">
             <h1>Sebastião Coelho</h1>
             <p>Information Technology Management <b>Student</b> | Rugby <b>Athlete</b> | Technical <b>Consultant</b> for
-                Digital
-                Transformation</p>
+                Digital Transformation</p>
             <p id="clock"></p>
             <nav>
                 <ul>
-                    <li><a href="{% url 'bandas:index' %}">Bandas</a></li>
-                    <li><a href="{% url 'curso:curso' %}">Cursos</a></li>
-                    <li><a href="{% url 'artigos:index' %}">Artigos</a></li>
-                    <li><a href="{% url 'meteo:index' %}">Meteo</a></li>
+                    <li><a href="#about-me">About Me</a></li>
+                    <li><a href="#web-projects">Web Projects</a></li>
+                    <li><a href="#my-links">My Links</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 </header>
 <main>
-    <section class="about-me">
+    <section id="about-me" class="about-me">
         <h2>About Me</h2>
         <p>I’m a sports addicted student who is eager to learn and experience new things.</p>
         <p>I have already started working on some jobs related to sports, but now that I'm in college I'm developing a
             love for coding and business.</p>
     </section>
-    <section class="web-projects">
+    <section id="web-projects" class="web-projects">
         <h2>Web Projects</h2>
         <ul>
-            <li><a href="{% url 'meteo:index' %}">Meteorologia</a></li>
-            <li><a href="">Bandas</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="#">Artigos</a></li>
+            <li><a href="{% url 'bandas:index' %}">Bandas</a></li>
+            <li><a href="{% url 'curso:curso' %}">Cursos</a></li>
+            <li><a href="{% url 'artigos:index' %}">Artigos</a></li>
+            <li><a href="{% url 'meteo:index' %}">Meteo</a></li>
         </ul>
     </section>
-    <section class="my-links">
+    <section id="my-links" class="my-links">
         <h2>My Links</h2>
         <ul>
-            <li><a href="www.linkedin.com/in/sebastião-coelho-86932b269">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/sebastiao-coelho-86932b269">LinkedIn</a></li>
             <li><a href="https://github.com/SebastiaoCoelh0">GitHub</a></li>
             <li>
                 <a href="https://europa.eu/europass/eportfolio/screen/share/8b394aa4-ab77-4ffd-8e9c-589e43563370?lang=en">Europass</a>

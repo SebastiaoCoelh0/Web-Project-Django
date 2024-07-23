@@ -51,9 +51,19 @@ header {
     margin-bottom: 1em;
 }
 
+#clock {
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 0;
 }
 
 nav ul li {
@@ -65,10 +75,17 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background: #444;
+    border-radius: 5px;
 }
 
 main {
-    padding: 20px;
+    padding: 80px 20px 20px; /* Add padding to avoid content overlap with fixed menu */
     max-width: 1200px;
     margin: auto;
 }
