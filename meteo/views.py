@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import requests
+from django.http import JsonResponse
 from django.shortcuts import render
 
 
@@ -110,3 +111,57 @@ def lisboa_view(request):
 
 def api_view(request):
     return render(request, 'meteo/api.html')
+
+
+def avisos_meteorologicos_view(request):
+    url = "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json"
+    response = requests.get(url)
+    data = response.json()
+    filtered_data = [
+        {
+            "text": item["text"],
+            "awarenessTypeName": item["awarenessTypeName"],
+            "idAreaAviso": item["idAreaAviso"],
+            "startTime": item["startTime"],
+            "awarenessLevelID": item["awarenessLevelID"],
+            "endTime": item["endTime"]
+        }
+        for item in data
+        if item["awarenessLevelID"] in ["yellow", "orange", "red"]
+    ]
+    return JsonResponse(filtered_data)
+
+def informacao_sismicidade_view(request, idArea):
+    url = f"https://api.ipma.pt/open-data/observation/seismic/{idArea}.json"
+    response = requests.get(url)
+    data = response.json()
+    filtered_data = [
+        {
+            "time": item["time"],
+            "local": item["local"],
+            "lat": item["lat"],
+            "lon": item["lon"],
+            "magnitud": item["magnitud"],
+            "magType": item["magType"],
+            "degree": item["degree"],
+            "dataUpdate": item["dataUpdate"],
+            "obsRegion": item["obsRegion"],
+            "depth": item["depth"]
+        }
+        for item in data["data"]
+    ]
+    return JsonResponse(filtered_data)
+
+def observacao_meteorologica_view(request):
+    url = "https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json"
+    response = requests.get(url)
+    data = response.json()
+    filtered_data = []
+    for date_time, stations in data.items():
+        for station_id, measurements in stations.items():
+            filtered_data.append({
+                "dateTime": date_time,
+                "stationId": station_id,
+                **measurements
+            })
+    return JsonResponse(filtered_data)

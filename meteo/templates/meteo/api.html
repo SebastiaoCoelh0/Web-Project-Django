@@ -2,60 +2,76 @@
 
 {% block content %}
 <h1>Documentação da API de Meteorologia</h1>
+
 <h2>Base URL</h2>
-<p><code>https://a22202310.pythonanywhere.com/api/</code></p>
+<p><code>https://a22202310.pythonanywhere.com/meteo/api/</code></p>
 
 <h2>Endpoints Disponíveis</h2>
 
-<h3>Listar Cidades</h3>
-<p><strong>Método:</strong> GET</p>
-<p><strong>URL:</strong> <code>api/cidades/</code></p>
-<p><strong>Descrição:</strong> Retorna uma lista de todas as cidades disponíveis.</p>
+<div class="api-section">
+    <h3>1. Avisos Meteorológicos até 3 dias</h3>
+    <p><strong>Método:</strong> GET</p>
+    <p><strong>URL:</strong> <code>meteo/api/avisos-meteorologicos/</code></p>
+    <p><strong>Descrição:</strong> Retorna os avisos meteorológicos para os próximos 3 dias em Portugal.</p>
+    <p><strong>Exemplo de Uso:</strong></p>
+    <button onclick="openJson('avisos-meteorologicos')">Obter Avisos Meteorológicos</button>
+</div>
 
-<h3>Previsão de Hoje para uma Cidade</h3>
-<p><strong>Método:</strong> GET</p>
-<p><strong>URL:</strong> <code>api/previsao_hoje/&lt;int:cidade_id&gt;/</code></p>
-<p><strong>Descrição:</strong> Retorna a previsão do tempo para hoje para a cidade especificada.</p>
-<p><strong>Parâmetros:</strong></p>
-<ul>
-    <li><code>cidade_id</code> (integer): ID da cidade.</li>
-</ul>
-<p><strong>Resposta:</strong> JSON</p>
-<pre>
-{
-    "cidade": "Lisboa",
-    "data": "2023-07-23",
-    "min_temp": 18,
-    "max_temp": 27,
-    "descricaoTempo": "Céu limpo",
-    "precipitacao": 0,
-    "icon_url": "https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_01anim.svg"
-}
-</pre>
+<div class="api-section">
+    <h3>2. Informação Sismicidade</h3>
+    <p><strong>Método:</strong> GET</p>
+    <p><strong>URL:</strong> <code>meteo/api/informacao-sismicidade/&lt;idArea&gt;/</code></p>
+    <p><strong>Descrição:</strong> Retorna a informação de sismicidade para uma área específica nos últimos 30 dias.</p>
+    <p><strong>Parâmetro:</strong> <code>idArea</code> pode assumir os valores:
+        <ul>
+            <li><code>3</code> - Arquipélago dos Açores</li>
+            <li><code>7</code> - Continente e Arquipélago da Madeira</li>
+        </ul>
+    </p>
+    <p><strong>Exemplo de Uso:</strong></p>
+    <button onclick="openJson('informacao-sismicidade', 3)">Obter Informação de Sismicidade para os Açores</button>
+    <button onclick="openJson('informacao-sismicidade', 7)">Obter Informação de Sismicidade para o Continente e Madeira</button>
+</div>
 
-<h3>Previsão dos Próximos 5 Dias para uma Cidade</h3>
-<p><strong>Método:</strong> GET</p>
-<p><strong>URL:</strong> <code>api/previsao_proximos_5_dias/&lt;int:cidade_id&gt;/</code></p>
-<p><strong>Descrição:</strong> Retorna a previsão do tempo para os próximos 5 dias para a cidade especificada.</p>
-<p><strong>Parâmetros:</strong></p>
-<ul>
-    <li><code>cidade_id</code> (integer): ID da cidade.</li>
-</ul>
-<p><strong>Resposta:</strong> JSON</p>
-<pre>
-{
-    "cidade": "Lisboa",
-    "previsoes": [
-        {
-            "data": "2023-07-23",
-            "min_temp": 18,
-            "max_temp": 27,
-            "descricaoTempo": "Céu limpo",
-            "precipitacao": 0,
-            "icon_url": "https://www.ipma.pt/bin/images/weather-symbols/w_ic_d_01anim.svg"
-        },
-        ...
-    ]
+<div class="api-section">
+    <h3>3. Observação Meteorológica das Estações (últimas 24 horas)</h3>
+    <p><strong>Método:</strong> GET</p>
+    <p><strong>URL:</strong> <code>meteo/api/observacao-meteorologica/</code></p>
+    <p><strong>Descrição:</strong> Retorna observações meteorológicas das estações nas últimas 24 horas.</p>
+    <p><strong>Exemplo de Uso:</strong></p>
+    <button onclick="openJson('observacao-meteorologica')">Obter Observações Meteorológicas</button>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<script>
+function openJson(endpoint, idArea = '') {
+    let baseUrl = 'https://a22202310.pythonanywhere.com/meteo/api/';
+    let url = idArea ? `${baseUrl}${endpoint}/${idArea}/` : `${baseUrl}${endpoint}/`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Network response was not ok: ${response.statusText}`);
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            let newWindow = window.open();
+            newWindow.document.open();
+            newWindow.document.write('<html><head><title>Resposta da API</title></head><body><pre>' + JSON.stringify(data, null, 2) + '</pre></body></html>');
+            newWindow.document.close();
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            let newWindow = window.open();
+            newWindow.document.open();
+            newWindow.document.write('<html><head><title>Erro</title></head><body><pre>Erro: ' + error.message + '</pre></body></html>');
+            newWindow.document.close();
+        });
 }
-</pre>
+</script>
 {% endblock %}

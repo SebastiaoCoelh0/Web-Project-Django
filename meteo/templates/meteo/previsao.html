@@ -9,7 +9,7 @@
                 {% for day in days %}
                     <div class="weather-day">
                         <p>Data: {{ day.forecastDate|date:"Y-m-d" }}</p>
-                        <img src="{{ day.image }}" class="weather-icon" alt="Icone de tempo">
+                        <img src="{{ day.image }}" class="weather-icon" alt="Ícone de tempo">
                         <p>Temperatura Mínima: {{ day.tMin }}°C</p>
                         <p>Temperatura Máxima: {{ day.tMax }}°C</p>
                         <p>Descrição do Tempo: {{ day.weatherType }}</p>

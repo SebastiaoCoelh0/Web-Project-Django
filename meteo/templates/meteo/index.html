@@ -3,12 +3,16 @@
 {% block content %}
     <div class="content-wrapper">
         <h1>Bem-vindo à Aplicação de Meteorologia</h1>
-        <h2>Previsão do tempo para Lisboa hoje <a href="{% url 'meteo:weather_lisboa' %}">
-            <button>Aqui</button>
-        </a></h2>
-        <h2>Documentação da API <a href="{% url 'meteo:api' %}">
-            <button>Aqui</button>
-        </a></h2>
+        <h2>Previsão do tempo para Lisboa hoje 
+            <a href="{% url 'meteo:weather_lisboa' %}">
+                <button>Aqui</button>
+            </a>
+        </h2>
+        <h2>Documentação da API 
+            <a href="{% url 'meteo:api' %}">
+                <button>Aqui</button>
+            </a>
+        </h2>
         <h2>Previsão do tempo para os próximos 5 dias</h2>
         <form method="get" action="{% url 'meteo:weather_previsao' %}">
             <label for="city">Selecione uma cidade:</label>

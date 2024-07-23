@@ -1,0 +1,144 @@
+/* meteo.css */
+
+/* Estilos Globais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Navegação */
+nav {
+    text-align: center;
+    margin: 10px 0;
+}
+
+nav a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Container */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Botões */
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* meteo.css */
+
+/* Previsão do Tempo */
+.weather-icon {
+    max-width: 50px;
+}
+
+.weather-forecast {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px;
+}
+
+.weather-day {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+    text-align: center;
+    min-width: 200px;
+}
+
+.weather-day img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+    .weather-forecast {
+        flex-direction: column;
+    }
+
+    .weather-day {
+        min-width: 100%;
+    }
+}
+
+
+/* Documentação API */
+code {
+    background: #f8f9fa;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 0.9rem;
+}
+
+pre {
+    background: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+/* Footer */
+footer {
+    background: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+

@@ -1,32 +1,23 @@
+ {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Artigos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background: white;
-            color: #333;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-        }
-    </style>
+    {% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'artigos/estilos.css' %}">
 </head>
 <body>
 <header>
-    <h1>Aplicação Artigos</h1>
-    <nav>
-        <a href="{% url 'artigos:index' %}">
-            <button>Home</button>
-        </a>
-    </nav>
+    <a href="{% url 'artigos:index' %}">
+        <h1>Aplicação Artigos</h1>
+    </a>
 </header>
 
 <main>
     <nav>
+        <a href="{% url 'portfolio:landing_page' %}"><h1>Portfolio</h1></a>
+        <br>
         {% if user.is_authenticated %}
             - <a href="{% url 'autenticacao:logout' %}">Logout</a>
         {% else %}
@@ -34,9 +25,10 @@
             - <a href="{% url 'autenticacao:registo' %}">Registo</a>
         {% endif %}
     </nav>
-
+    <br>
     {% block content %}
     {% endblock %}
+
 </main>
 
 <footer>

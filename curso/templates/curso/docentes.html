@@ -10,7 +10,7 @@
     <ul>
         {% for docente in docentes %}
             <li>
-                <a href="{% url 'curso:docente_detalhe' docente.id %}">{{ docente.nome }}</a>
+                <a href="{% url 'curso:docente' docente.id %}">{{ docente.nome }}</a>
             </li>
         {% endfor %}
     </ul>

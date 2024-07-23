@@ -17,16 +17,10 @@
             {% endfor %}
         </ul>
     {% endif %}
-    
+
     {% if disciplina.projeto %}
         <h3>Projetos</h3>
-        <ul>
-            {% for projeto in disciplina.projeto %}
-                <li>
-                    <a href="{% url 'curso:projeto' projeto.id %}">{{ projeto.descricao }}</a>
-                </li>
-            {% endfor %}
-        </ul>
+        <a href="{% url 'curso:projetos' %}">{{ projeto.descricao }}</a>
     {% endif %}
 
     {% if request.user.is_authenticated %}
